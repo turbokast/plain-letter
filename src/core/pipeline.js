@@ -6,7 +6,7 @@
 //   ai.explain(redacted, opts)    cloud (or on-device when asked), sees the redacted letter only
 //   ai.rewrite(redacted, how)     on-device preferred, sees the redacted reply only
 
-import { redact, findLeaks } from './redact.js';
+import { redact, findLeaks, locate } from './redact.js';
 import { fillBack, fillBackDeep } from './fillback.js';
 import { REWRITE_INSTRUCTIONS } from './prompts.js';
 
@@ -16,6 +16,24 @@ export class LeakError extends Error {
     this.name = 'LeakError';
     this.leaks = leaks;
   }
+}
+
+/**
+ * The on-device model sometimes works a date out ("issued 3 November, 14 days
+ * to respond" becomes "17 November") or simply gets one wrong. A fact is shown
+ * only if its words are in the letter; anything else is dropped and counted.
+ */
+export function checkFacts(letter, facts) {
+  if (!facts) return null;
+  const out = { letter_type: String(facts.letter_type || ''), sender: String(facts.sender || ''), amount: '', deadline: '', dropped: [] };
+  for (const key of ['amount', 'deadline']) {
+    const v = String(facts[key] || '').trim();
+    if (!v) continue;
+    const inLetter = locate(letter, v).length > 0 || (key === 'amount' && /\d/.test(v) && locate(letter, '£' + v.replace(/^£/, '')).length > 0);
+    if (inLetter) out[key] = key === 'amount' && !/^[£$€]/.test(v) && /^\d/.test(v) ? '£' + v : v;
+    else out.dropped.push({ key, value: v });
+  }
+  return out;
 }
 
 export function createSession(ai, { now = () => new Date() } = {}) {
@@ -60,7 +78,7 @@ export function createSession(ai, { now = () => new Date() } = {}) {
         letter,
         extraTerms: [...extraTerms],
         modelDetails,
-        facts: facts ? { letter_type: facts.letter_type || '', sender: facts.sender || '', amount: facts.amount || '', deadline: facts.deadline || '' } : null,
+        facts: checkFacts(letter, facts),
         redaction,
         // 'model+patterns' when the on-device model ran, 'patterns-only' when it could not.
         level: facts ? 'model+patterns' : 'patterns-only',

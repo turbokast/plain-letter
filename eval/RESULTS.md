@@ -7,7 +7,7 @@ A detail counts as hidden only if it cannot be read anywhere in the text that wo
 | Setup | Details hidden | Letters with nothing missed | Needed facts still readable |
 |---|---|---|---|
 | Patterns only (no model; what a browser without Gemini Nano gets) | 61/68 (89.7%) | 7/10 | 42/42 (100.0%) |
-| On-device model + patterns | not measured yet | | |
+| On-device model + patterns (Gemini Nano (Chrome built-in), recorded 2026-11-14) | 67/68 (98.5%) | 9/10 | 42/42 (100.0%) |
 
 ## Patterns only: by kind
 
@@ -42,8 +42,54 @@ A detail counts as hidden only if it cannot be read anywhere in the text that wo
 
 - none
 
+## On-device model + patterns: by kind
+
+| Kind | Hidden |
+|---|---|
+| ADDRESS | 16/17 |
+| BANK_ACCOUNT | 2/2 |
+| DATE_OF_BIRTH | 2/2 |
+| EMAIL | 1/1 |
+| NAME | 19/19 |
+| NHS_NUMBER | 1/1 |
+| NI_NUMBER | 3/3 |
+| PAYE_REFERENCE | 1/1 |
+| PHONE | 1/1 |
+| POSTCODE | 10/10 |
+| REFERENCE | 8/8 |
+| SORT_CODE | 1/1 |
+| TAX_REFERENCE | 1/1 |
+| VEHICLE_REG | 1/1 |
+
+### On-device model + patterns: what was missed
+
+- county-court-claim: ADDRESS "Old Mockton"
+
+### On-device model + patterns: needed facts hidden by mistake
+
+- none
+
+## Facts card (amount and key date from the on-device model)
+
+The app shows a fact only if its words are in the letter. Counted against our labels in eval/letters.js:
+
+| Fact | Shown and right | Shown but not the main one | Not in the letter, so not shown | Model gave none |
+|---|---|---|---|---|
+| amount | 9/10 | 1 | 0 | 0 |
+| deadline | 7/10 | 1 | 2 | 0 |
+
+- council-tax-reminder: deadline "1 November 2026" is in the letter but is not the main one (expected 7 days or 12 November 2026): shown
+- landlord-rent-increase: amount "£780 per calendar month" is in the letter but is not the main one (expected £865): shown
+- county-court-claim: deadline "17 November 2026" is not in the letter: not shown
+- nhs-penalty-charge: deadline "2 November 2026" is not in the letter: not shown
+
+## On-device model run
+
+Recorded 2026-11-14 in headless Chrome 157.0.8103.50 on Linux, NVIDIA RTX 4060 8 GB through the Firebase AI Logic SDK (mode only_on_device). Time per letter: hmrc-late-filing 14.3 s, council-tax-reminder 10.0 s, landlord-rent-increase 12.3 s, dwp-overpayment 13.0 s, parking-pcn 11.1 s, county-court-claim 11.7 s, energy-debt 13.5 s, hmrc-tax-code 11.5 s, bank-overdraft 19.2 s, nhs-penalty-charge 14.6 s.
+
 ## Limits
 
+- The patterns were written while looking at these same letters, so the patterns-only figure is optimistic for letters we have not seen.
 - Ten letters written by us is a small, friendly sample. Real letters vary more (scans, tables, handwriting, Welsh).
 - The labels are ours. A detail we did not think to label is not counted.
 - Names without a title and address lines without a street word cannot be found by patterns; that is the on-device model's job, and the user sees the text before it is sent and can hide anything else by hand.

@@ -104,13 +104,17 @@ export function createFirebaseAI({ config, appCheck = {}, cloudModel, cloudStand
         return cloudStandIn.explain(redacted, { placeholders });
       }
       const { response } = await (neverSend ? explainLocal : explainHybrid).generateContent(prompt);
-      return { result: JSON.parse(response.text()), source: where(response) };
+      const result = JSON.parse(response.text());
+      if (typeof result.reply_draft === 'string') result.reply_draft = result.reply_draft.replace(/^[\s¿¡]+/, '');
+      return { result, source: where(response) };
     },
 
     async rewrite(redactedReply, instruction) {
       try {
         const { response } = await rewriteModel.generateContent(rewritePrompt(redactedReply, instruction));
-        return { text: response.text().trim(), source: where(response) };
+        // The on-device model sometimes echoes the "REPLY:" label or starts with a stray mark.
+        const text = response.text().replace(/^\s*(?:REPLY:)?[\s¿¡]*/i, '').trim();
+        return { text, source: where(response) };
       } catch (e) {
         if (!hasCloud && cloudStandIn) return cloudStandIn.rewrite(redactedReply, instruction);
         throw e;

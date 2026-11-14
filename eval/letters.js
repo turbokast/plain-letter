@@ -5,6 +5,7 @@
 //
 // pii:  what must be hidden before anything is sent.
 // keep: what must stay readable, or the cloud cannot explain the letter.
+// facts: acceptable answers for the main amount and the date or period to act by.
 
 export const LETTERS = [
   {
@@ -47,6 +48,7 @@ HM Revenue and Customs`,
       { kind: 'NI_NUMBER', text: 'QQ 12 34 56 C' },
     ],
     keep: ['£100', '14 December 2026', '30 days', '31 October 2026'],
+    facts: { amount: ['£100'], deadline: ['14 December 2026'] },
   },
   {
     id: 'council-tax-reminder',
@@ -81,6 +83,7 @@ Revenues Team`,
       { kind: 'REFERENCE', text: '7104482913' },
     ],
     keep: ['£148.00', 'within 7 days', '£740.00', '£82.50', 'liability order'],
+    facts: { amount: ['£148.00'], deadline: ['7 days', '12 November 2026'] },
   },
   {
     id: 'landlord-rent-increase',
@@ -118,6 +121,7 @@ Property Manager`,
       { kind: 'REFERENCE', text: 'HL/2023/00417' },
     ],
     keep: ['£780', '£865', '1 February 2027', '10 December 2026'],
+    facts: { amount: ['£865'], deadline: ['10 December 2026'] },
   },
   {
     id: 'dwp-overpayment',
@@ -160,6 +164,7 @@ Office Manager`,
       { kind: 'DATE_OF_BIRTH', text: '14/03/1984' },
     ],
     keep: ['£612.48', '£46.20', '12 December 2026', 'mandatory reconsideration', 'within one month'],
+    facts: { amount: ['£612.48'], deadline: ['one month', '12 December 2026', '4 December 2026'] },
   },
   {
     id: 'parking-pcn',
@@ -193,6 +198,7 @@ To pay or challenge online go to eastmere.example.com/pcn and enter the PCN numb
       { kind: 'REFERENCE', text: 'EM40078812' },
     ],
     keep: ['£70', 'within 28 days', '£105', '19/10/2026'],
+    facts: { amount: ['£70'], deadline: ['28 days'] },
   },
   {
     id: 'county-court-claim',
@@ -226,6 +232,7 @@ Respond online at the Money Claim Online service using the claim number and the 
       { kind: 'REFERENCE', text: '48213377' },
     ],
     keep: ['£2,053.57', '14 days', '28 days', 'judgment'],
+    facts: { amount: ['£2,053.57'], deadline: ['14 days'] },
   },
   {
     id: 'energy-debt',
@@ -265,6 +272,7 @@ Kelpie Energy Collections Team`,
       { kind: 'PHONE', text: '07700 900123' },
     ],
     keep: ['£418.90', '20 November 2026', 'prepayment meter', '£150'],
+    facts: { amount: ['£418.90'], deadline: ['20 November 2026'] },
   },
   {
     id: 'hmrc-tax-code',
@@ -303,6 +311,7 @@ If you think this is wrong, or you would rather pay the £400 in one payment, te
       { kind: 'PAYE_REFERENCE', text: '123/AB45678' },
     ],
     keep: ['1057L', '£400', '£2,000', 'within 30 days'],
+    facts: { amount: ['£400'], deadline: ['30 days'] },
   },
   {
     id: 'bank-overdraft',
@@ -340,6 +349,7 @@ Customer Lending Team`,
       { kind: 'BANK_ACCOUNT', text: '31926819' },
     ],
     keep: ['£1,500', '7 December 2026', '£1,212.36', 'default'],
+    facts: { amount: ['£1,212.36', '£1,500'], deadline: ['7 December 2026'] },
   },
   {
     id: 'nhs-penalty-charge',
@@ -376,6 +386,7 @@ You must pay or challenge this notice within 28 days of the date above. If you d
       { kind: 'DATE_OF_BIRTH', text: '2 May 1991' },
     ],
     keep: ['£59.40', 'within 28 days', '£24.75', '12 August 2026'],
+    facts: { amount: ['£59.40'], deadline: ['28 days', '1 December 2026'] },
   },
 ];
 

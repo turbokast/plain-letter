@@ -37,7 +37,7 @@ const session = createSession(ai);
 let showPlaceholders = false;
 
 // For automated checks of this page (tests drive it from outside).
-window.__plainLetter = { ai, session };
+window.__plainLetter = { ai, session, letters: LETTERS };
 
 // ---------- status ----------
 
@@ -147,7 +147,7 @@ function drawStep2() {
     if (f.deadline) {
       const label = deadlineLabel(f.deadline);
       const n = daysUntil(f.deadline);
-      facts.push(['Act by', f.deadline, label, n !== null && n > 14]);
+      facts.push(['Key date', f.deadline, label, n !== null && n > 14]);
     }
   }
   $('facts').innerHTML = facts.map(([k, v, extra, calm]) => `<div class="fact"><b>${esc(k)}</b><span>${esc(v)}</span>${extra ? `<em class="${calm ? 'calm' : ''}">${esc(extra)}</em>` : ''}</div>`).join('');
@@ -223,7 +223,7 @@ function drawStep3() {
   $('answer').innerHTML = `
     ${ex.source === 'demo' ? `<div class="demo">${esc(SOURCE_TEXT.demo)}</div>` : ''}
     <p class="summary">${show(a.summary)}</p>
-    <p class="source">${esc(SOURCE_TEXT[ex.source] || ex.source)}${ex.ms ? ` ${(ex.ms / 1000).toFixed(1)} s.` : ''}</p>
+    ${ex.source === 'demo' ? '' : `<p class="source">${esc(SOURCE_TEXT[ex.source] || ex.source)}${ex.ms ? ` ${(ex.ms / 1000).toFixed(1)} s.` : ''}</p>`}
     <h3>What it means</h3>${list(a.what_it_means)}
     <h3>If you do nothing</h3><p>${show(a.if_ignored)}</p>
     <h3>Your options</h3>${(a.options || []).map((o) => `<div class="option"><b>${show(o.title)}</b>${show(o.detail)}</div>`).join('')}

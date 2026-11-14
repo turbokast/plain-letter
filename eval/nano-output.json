@@ -1,0 +1,438 @@
+{
+ "recorded": "2026-11-14",
+ "browser": "headless Chrome 157.0.8103.50 on Linux, NVIDIA RTX 4060 8 GB",
+ "model": "Gemini Nano (Chrome built-in)",
+ "how": "scripts/cdp.py: window.__plainLetter.ai.extract(letter) for each letter in eval/letters.js, i.e. Firebase AI Logic getGenerativeModel with mode only_on_device and the EXTRACT_SCHEMA response constraint. One run, not cherry-picked.",
+ "letters": {
+  "hmrc-late-filing": {
+   "ms": 14315,
+   "output": {
+    "letter_type": "late filing penalty",
+    "sender": "HM Revenue and Customs",
+    "amount": "£100",
+    "deadline": "14 December 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Mr Alan Example"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "12 Sample Road"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "DD1 9ZZ"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": ""
+     },
+     {
+      "kind": "PHONE",
+      "text": ""
+     },
+     {
+      "kind": "EMAIL",
+      "text": ""
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": "QQ 12 34 56 C"
+     },
+     {
+      "kind": "TAX_REFERENCE",
+      "text": "12345 67890"
+     }
+    ]
+   }
+  },
+  "council-tax-reminder": {
+   "ms": 9978,
+   "output": {
+    "letter_type": "Council Tax Reminder Notice",
+    "sender": "Northbridge Council",
+    "amount": "£148.00",
+    "deadline": "1 November 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Ms Priya Sampleton"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Flat 2, 48 Canal Street"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "NB4 2QY"
+     },
+     {
+      "kind": "OTHER",
+      "text": "Account number: 7104482913"
+     }
+    ]
+   }
+  },
+  "landlord-rent-increase": {
+   "ms": 12271,
+   "output": {
+    "letter_type": "rent increase notice",
+    "sender": "Harbour Lettings Ltd",
+    "amount": "£780 per calendar month",
+    "deadline": "10 December 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Tomasz Nowak-Sample"
+     },
+     {
+      "kind": "NAME",
+      "text": "Erin Placeholder"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Flat 5, 17 Mill Wynd"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Portside"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "PS2 7TT"
+     },
+     {
+      "kind": "REFERENCE",
+      "text": "HL/2023/00417"
+     }
+    ]
+   }
+  },
+  "dwp-overpayment": {
+   "ms": 13015,
+   "output": {
+    "letter_type": "overpayment notice",
+    "sender": "Department for Work and Pensions",
+    "amount": "£612.48",
+    "deadline": "12 December 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Mrs Grace Testerton"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "9 Orchard Close"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Little Fakenham"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "LF3 8RW"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": "14/03/1984"
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": "QQ987654A"
+     }
+    ]
+   }
+  },
+  "parking-pcn": {
+   "ms": 11066,
+   "output": {
+    "letter_type": "penalty charge notice",
+    "sender": "Eastmere Borough Council Parking Services",
+    "amount": "70",
+    "deadline": "28 days",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Dr Samuel Mockford"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "221 Station Avenue"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "EM9 5HH"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": ""
+     },
+     {
+      "kind": "PHONE",
+      "text": ""
+     },
+     {
+      "kind": "EMAIL",
+      "text": ""
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": ""
+     },
+     {
+      "kind": "TAX_REFERENCE",
+      "text": ""
+     },
+     {
+      "kind": "BANK_ACCOUNT",
+      "text": ""
+     },
+     {
+      "kind": "REFERENCE",
+      "text": "EM40078812"
+     },
+     {
+      "kind": "OTHER",
+      "text": "AB12 CDE"
+     }
+    ]
+   }
+  },
+  "county-court-claim": {
+   "ms": 11687,
+   "output": {
+    "letter_type": "county court claim",
+    "sender": "Brightline Finance Limited",
+    "amount": "£2,053.57",
+    "deadline": "17 November 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Jordan Specimen"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "6 Weaver Terrace"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "OM12 4JD"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": ""
+     },
+     {
+      "kind": "PHONE",
+      "text": ""
+     },
+     {
+      "kind": "EMAIL",
+      "text": ""
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": ""
+     },
+     {
+      "kind": "TAX_REFERENCE",
+      "text": ""
+     },
+     {
+      "kind": "BANK_ACCOUNT",
+      "text": ""
+     },
+     {
+      "kind": "REFERENCE",
+      "text": "40021987"
+     },
+     {
+      "kind": "OTHER",
+      "text": "Claim Number: K7QZ41B9"
+     }
+    ]
+   }
+  },
+  "energy-debt": {
+   "ms": 13513,
+   "output": {
+    "letter_type": "overdue account",
+    "sender": "Kelpie Energy",
+    "amount": "£418.90",
+    "deadline": "20 November 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Miss Aroha Sampleson"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "3/2, 91 Tollcross Road"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "G32 8ZZ"
+     },
+     {
+      "kind": "PHONE",
+      "text": "07700 900123"
+     },
+     {
+      "kind": "EMAIL",
+      "text": "aroha.sampleson@example.com"
+     },
+     {
+      "kind": "OTHER",
+      "text": "Customer number 5500 1234 77"
+     }
+    ]
+   }
+  },
+  "hmrc-tax-code": {
+   "ms": 11512,
+   "output": {
+    "letter_type": "tax code change",
+    "sender": "HM Revenue and Customs",
+    "amount": "£400",
+    "deadline": "30 days",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Mx Robin Dummyson"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "The Old Bakery"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "4 Chapel Lane"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Nether Sample"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "NS6 1PL"
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": "QQ 44 55 66 D"
+     },
+     {
+      "kind": "TAX_REFERENCE",
+      "text": "123/AB45678"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": ""
+     },
+     {
+      "kind": "PHONE",
+      "text": "0300 200 3300"
+     },
+     {
+      "kind": "EMAIL",
+      "text": ""
+     }
+    ]
+   }
+  },
+  "bank-overdraft": {
+   "ms": 19177,
+   "output": {
+    "letter_type": "arranged overdraft notification",
+    "sender": "Tidewater Bank plc",
+    "amount": "£1,500",
+    "deadline": "7 December 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Mr Placeholder-Jones"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Rose Cottage, 2 Ferry Row"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "Saltmarsh SM4 0XX"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": ""
+     },
+     {
+      "kind": "PHONE",
+      "text": "0345 000 0000"
+     },
+     {
+      "kind": "EMAIL",
+      "text": ""
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": ""
+     },
+     {
+      "kind": "TAX_REFERENCE",
+      "text": ""
+     },
+     {
+      "kind": "BANK_ACCOUNT",
+      "text": "Sort code 40-51-62  Account number 31926819"
+     },
+     {
+      "kind": "REFERENCE",
+      "text": ""
+     },
+     {
+      "kind": "OTHER",
+      "text": "Your arranged overdraft limit"
+     }
+    ]
+   }
+  },
+  "nhs-penalty-charge": {
+   "ms": 14600,
+   "output": {
+    "letter_type": "Penalty Charge Notice",
+    "sender": "NHS Business Services Authority",
+    "amount": "59.40",
+    "deadline": "2 November 2026",
+    "personal_details": [
+     {
+      "kind": "NAME",
+      "text": "Leila Notreal"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "77 Kiln Gardens"
+     },
+     {
+      "kind": "ADDRESS",
+      "text": "Upper Testbury"
+     },
+     {
+      "kind": "POSTCODE",
+      "text": "UT2 3EF"
+     },
+     {
+      "kind": "NI_NUMBER",
+      "text": "943 476 5919"
+     },
+     {
+      "kind": "DATE_OF_BIRTH",
+      "text": "2 May 1991"
+     },
+     {
+      "kind": "REFERENCE",
+      "text": "2611-447-0093"
+     }
+    ]
+   }
+  }
+ }
+}

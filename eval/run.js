@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { LETTERS } from './letters.js';
 import { scoreLetter, summarise } from './score.js';
+import { checkFacts } from '../src/core/pipeline.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const nanoPath = join(here, 'nano-output.json');
@@ -46,10 +47,36 @@ for (const [name, r] of [['Patterns only', patterns], ['On-device model + patter
   lines.push(`### ${name}: needed facts hidden by mistake`, '', ...(lost.length ? lost : ['- none']), '');
 }
 if (nano) {
+  // Facts card: amount and key date from the on-device model, before and after the "must be in the letter" check.
+  const norm = (x) => String(x).toLowerCase().replace(/[£\s]/g, '');
+  const tally = { amount: { right: 0, wrong: 0, dropped: 0, empty: 0 }, deadline: { right: 0, wrong: 0, dropped: 0, empty: 0 } };
+  const wrong = [];
+  for (const l of LETTERS) {
+    const raw = nano.letters[l.id].output;
+    const shown = checkFacts(l.text, raw);
+    for (const key of ['amount', 'deadline']) {
+      const ok = (v) => l.facts[key].some((a) => norm(v).includes(norm(a)));
+      if (!String(raw[key] || '').trim()) tally[key].empty++;
+      else if (!shown[key]) {
+        tally[key].dropped++;
+        wrong.push(`- ${l.id}: ${key} "${raw[key]}" is not in the letter: not shown`);
+      } else if (ok(shown[key])) tally[key].right++;
+      else {
+        tally[key].wrong++;
+        wrong.push(`- ${l.id}: ${key} "${shown[key]}" is in the letter but is not the main one (expected ${l.facts[key].join(' or ')}): shown`);
+      }
+    }
+  }
+  lines.push('## Facts card (amount and key date from the on-device model)', '');
+  lines.push('The app shows a fact only if its words are in the letter. Counted against our labels in eval/letters.js:', '');
+  lines.push('| Fact | Shown and right | Shown but not the main one | Not in the letter, so not shown | Model gave none |', '|---|---|---|---|---|');
+  for (const key of ['amount', 'deadline']) lines.push(`| ${key} | ${tally[key].right}/${LETTERS.length} | ${tally[key].wrong} | ${tally[key].dropped} | ${tally[key].empty} |`);
+  lines.push('', ...(wrong.length ? wrong : ['- all right']), '');
+  console.log('facts', JSON.stringify(tally));
   lines.push('## On-device model run', '');
   lines.push(`Recorded ${nano.recorded} in ${nano.browser || 'Chrome'} through the Firebase AI Logic SDK (mode only_on_device). Time per letter: ${Object.entries(nano.letters).map(([id, v]) => `${id} ${(v.ms / 1000).toFixed(1)} s`).join(', ')}.`, '');
 }
-lines.push('## Limits', '', '- Ten letters written by us is a small, friendly sample. Real letters vary more (scans, tables, handwriting, Welsh).', '- The labels are ours. A detail we did not think to label is not counted.', '- Names without a title and address lines without a street word cannot be found by patterns; that is the on-device model\'s job, and the user sees the text before it is sent and can hide anything else by hand.', '');
+lines.push('## Limits', '', '- The patterns were written while looking at these same letters, so the patterns-only figure is optimistic for letters we have not seen.', '- Ten letters written by us is a small, friendly sample. Real letters vary more (scans, tables, handwriting, Welsh).', '- The labels are ours. A detail we did not think to label is not counted.', '- Names without a title and address lines without a street word cannot be found by patterns; that is the on-device model\'s job, and the user sees the text before it is sent and can hide anything else by hand.', '');
 
 writeFileSync(join(here, 'RESULTS.md'), lines.join('\n'));
 writeFileSync(

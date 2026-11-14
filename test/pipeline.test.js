@@ -126,3 +126,13 @@ test('UK dates and days left', () => {
   assert.equal(deadlineLabel('14 December 2026', today), '30 days left');
   assert.equal(deadlineLabel('13 November 2026', today), '1 day ago');
 });
+
+test('facts from the model are shown only if their words are in the letter', async () => {
+  const { checkFacts } = await import('../src/core/pipeline.js');
+  const f = checkFacts(hmrc.text, { letter_type: 'penalty', sender: 'HMRC', amount: '100', deadline: '15 December 2026' });
+  assert.equal(f.amount, '£100');
+  assert.equal(f.deadline, '');
+  assert.deepEqual(f.dropped, [{ key: 'deadline', value: '15 December 2026' }]);
+  assert.equal(checkFacts(hmrc.text, { amount: '£100', deadline: '14 December 2026' }).deadline, '14 December 2026');
+  assert.equal(checkFacts(hmrc.text, null), null);
+});
