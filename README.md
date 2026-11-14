@@ -37,7 +37,7 @@ Safety nets that do not depend on a model being right:
 
 ## Run it
 
-Needs Node 22 and Chrome 138 or later on a desktop (the on-device model needs about 22 GB of free disk and a GPU with more than 4 GB of memory, or 16 GB of RAM; the first use downloads about 4 GB).
+Needs Node 22 and a desktop Chrome that has the built-in on-device model (checked on Chrome 157; Chrome's own hardware requirements for built-in AI apply, and the first use downloads about 4 GB).
 
 ```
 npm install
