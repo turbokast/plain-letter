@@ -1,0 +1,153 @@
+{
+ "patterns": {
+  "letters": 10,
+  "pii": 68,
+  "hidden": 61,
+  "keep": 42,
+  "kept": 42,
+  "lettersFullyHidden": 7,
+  "byKind": {
+   "NAME": {
+    "total": 19,
+    "hidden": 13
+   },
+   "ADDRESS": {
+    "total": 17,
+    "hidden": 16
+   },
+   "POSTCODE": {
+    "total": 10,
+    "hidden": 10
+   },
+   "TAX_REFERENCE": {
+    "total": 1,
+    "hidden": 1
+   },
+   "NI_NUMBER": {
+    "total": 3,
+    "hidden": 3
+   },
+   "REFERENCE": {
+    "total": 8,
+    "hidden": 8
+   },
+   "DATE_OF_BIRTH": {
+    "total": 2,
+    "hidden": 2
+   },
+   "VEHICLE_REG": {
+    "total": 1,
+    "hidden": 1
+   },
+   "BANK_ACCOUNT": {
+    "total": 2,
+    "hidden": 2
+   },
+   "EMAIL": {
+    "total": 1,
+    "hidden": 1
+   },
+   "PHONE": {
+    "total": 1,
+    "hidden": 1
+   },
+   "PAYE_REFERENCE": {
+    "total": 1,
+    "hidden": 1
+   },
+   "SORT_CODE": {
+    "total": 1,
+    "hidden": 1
+   },
+   "NHS_NUMBER": {
+    "total": 1,
+    "hidden": 1
+   }
+  }
+ },
+ "hybrid": null,
+ "missedPatterns": [
+  {
+   "id": "hmrc-late-filing",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "council-tax-reminder",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "landlord-rent-increase",
+   "missed": [
+    {
+     "kind": "NAME",
+     "text": "Tomasz Nowak-Sample"
+    },
+    {
+     "kind": "NAME",
+     "text": "Erin Placeholder"
+    },
+    {
+     "kind": "NAME",
+     "text": "Tomasz"
+    },
+    {
+     "kind": "NAME",
+     "text": "Erin"
+    }
+   ],
+   "lost": []
+  },
+  {
+   "id": "dwp-overpayment",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "parking-pcn",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "county-court-claim",
+   "missed": [
+    {
+     "kind": "NAME",
+     "text": "Jordan Specimen"
+    },
+    {
+     "kind": "ADDRESS",
+     "text": "Old Mockton"
+    }
+   ],
+   "lost": []
+  },
+  {
+   "id": "energy-debt",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "hmrc-tax-code",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "bank-overdraft",
+   "missed": [],
+   "lost": []
+  },
+  {
+   "id": "nhs-penalty-charge",
+   "missed": [
+    {
+     "kind": "NAME",
+     "text": "Leila Notreal"
+    }
+   ],
+   "lost": []
+  }
+ ],
+ "missedHybrid": null
+}

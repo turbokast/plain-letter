@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env.local
+.env.*.local
+.firebase/
+*.log
+/tmp/
+INTERNAL-NOTES.md

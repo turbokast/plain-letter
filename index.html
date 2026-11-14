@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plain Letter: understand an official letter without handing over your details</title>
+    <meta name="description" content="Paste an official letter. Your personal details are hidden on your own device before anything is sent, then put back locally in the reply." />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand"><span class="mark" aria-hidden="true">¶</span> Plain Letter</div>
+      <p class="tagline">Understand an official letter. Your details stay on this device.</p>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </header>
+
+    <main class="layout">
+      <div class="steps">
+        <section class="step" id="step1" aria-labelledby="h1">
+          <h2 id="h1"><span class="num">1</span> Your letter</h2>
+          <p class="hint">Paste the text of the letter. Nothing is sent when you paste or when you press the button below: that step runs in this browser.</p>
+          <div class="samples" id="samples"><span>No letter to hand? Try a made-up one:</span></div>
+          <label class="sr" for="letter">Letter text</label>
+          <textarea id="letter" rows="14" spellcheck="false" placeholder="Paste the letter here"></textarea>
+          <div class="actions">
+            <button id="analyse" class="primary">Hide my details</button>
+            <span id="analyseNote" class="note"></span>
+          </div>
+          <div id="download" class="download" hidden>
+            <progress id="downloadBar" max="1" value="0"></progress>
+            <span id="downloadText"></span>
+          </div>
+        </section>
+
+        <section class="step" id="step2" aria-labelledby="h2" hidden>
+          <h2 id="h2"><span class="num">2</span> Check what will be sent</h2>
+          <div id="level" class="level"></div>
+          <div id="facts" class="facts"></div>
+          <h3>Exactly this text would be sent</h3>
+          <pre id="redacted" class="letter" tabindex="0"></pre>
+          <details class="found" open>
+            <summary><span id="foundCount"></span></summary>
+            <table>
+              <thead><tr><th>Shown as</th><th>Your detail (stays here)</th><th>Found by</th></tr></thead>
+              <tbody id="entities"></tbody>
+            </table>
+            <div id="unlocated" class="warn" hidden></div>
+          </details>
+          <form id="addForm" class="add">
+            <label for="addTerm">Still see something personal? Type it exactly and it is hidden everywhere.</label>
+            <div><input id="addTerm" autocomplete="off" /><button>Hide this too</button></div>
+          </form>
+          <div class="actions">
+            <button id="explain" class="primary">Explain it and draft a reply</button>
+            <button id="explainLocal" class="quiet">Stay on this device (basic answer)</button>
+          </div>
+          <p id="explainNote" class="note"></p>
+        </section>
+
+        <section class="step" id="step3" aria-labelledby="h3" hidden>
+          <h2 id="h3"><span class="num">3</span> What it means, and your reply</h2>
+          <div id="answer"></div>
+        </section>
+      </div>
+
+      <aside class="ledger" aria-labelledby="hl">
+        <h2 id="hl">What has left this device</h2>
+        <div id="ledger"></div>
+        <p class="small">This list is written by the same code that sends. Each entry shows the exact text, character for character.</p>
+      </aside>
+    </main>
+
+    <footer class="foot">
+      <p>Plain Letter explains what a letter says. It is not legal, tax or debt advice. For free advice in the UK: Citizens Advice, TaxAid, Shelter, StepChange.</p>
+      <p>Open source (Apache 2.0). On-device and cloud AI through Firebase AI Logic hybrid inference.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
