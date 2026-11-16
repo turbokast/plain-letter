@@ -71,8 +71,10 @@ export function nameVariants(name) {
   return [...out].filter((v) => v.replace(/[^\p{L}]/gu, '').length >= 3);
 }
 
+// Case is kept: "Eastmere" and "eastmere" (inside a web address) get their own
+// placeholders, so filling back restores each exactly as it was written.
 function canonical(s) {
-  return s.replace(/[\s,.;:]+/g, ' ').trim().toLowerCase();
+  return s.replace(/[\s,.;:]+/g, ' ').trim();
 }
 
 /**
@@ -87,6 +89,25 @@ function canonical(s) {
  * }}
  */
 export function redact(text, details = []) {
+  // A value hidden in one place must be hidden everywhere, or the gate
+  // (findLeaks) would rightly refuse to send. The address-block rule hides a
+  // town by its position ("Glasgow" between the street and the postcode); the
+  // same word elsewhere ("PO Box 7, Glasgow") is then hidden on a second pass.
+  let result = redactOnce(text, details);
+  for (let pass = 0; pass < 3; pass++) {
+    const leaks = findLeaks(result.redacted, result.map);
+    if (!leaks.length) break;
+    const again = leaks.map((l) => {
+      const e = result.entities.find((x) => x.placeholder === l.placeholder);
+      return { kind: e.kind, text: l.value, source: e.sources.includes('you') ? 'you' : e.sources.includes('model') ? 'model' : 'pattern' };
+    });
+    details = [...details, ...again];
+    result = redactOnce(text, details);
+  }
+  return result;
+}
+
+function redactOnce(text, details) {
   const spans = [];
   const unlocated = [];
 

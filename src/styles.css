@@ -58,6 +58,10 @@ button.quiet, .add button, .tools button { background: transparent; color: var(-
 button:disabled { opacity: 0.55; cursor: progress; }
 button:focus-visible, textarea:focus-visible, input:focus-visible, .letter:focus-visible, summary:focus-visible { outline: 3px solid #7fb69a; outline-offset: 2px; }
 
+.photo { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; margin-top: 0.7rem; }
+.photo button { padding: 0.35rem 0.8rem; font-size: 0.9rem; }
+button:disabled.off { cursor: not-allowed; }
+
 .download { margin-top: 0.8rem; display: flex; gap: 0.7rem; align-items: center; font-size: 0.85rem; color: var(--muted); }
 .download progress { width: 14rem; }
 

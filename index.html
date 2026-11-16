@@ -18,10 +18,15 @@
       <div class="steps">
         <section class="step" id="step1" aria-labelledby="h1">
           <h2 id="h1"><span class="num">1</span> Your letter</h2>
-          <p class="hint">Paste the text of the letter. Nothing is sent when you paste or when you press the button below: that step runs in this browser.</p>
+          <p class="hint">Paste the text of the letter, or choose a photo of it. Nothing is sent when you paste, choose a photo or press the button below: those steps run in this browser.</p>
           <div class="samples" id="samples"><span>No letter to hand? Try a made-up one:</span></div>
           <label class="sr" for="letter">Letter text</label>
           <textarea id="letter" rows="14" spellcheck="false" placeholder="Paste the letter here"></textarea>
+          <div class="photo">
+            <button type="button" id="photoButton" class="quiet">Read a photo of the letter</button>
+            <input type="file" id="photo" accept="image/jpeg,image/png" hidden />
+            <span id="photoNote" class="note" role="status" aria-live="polite"></span>
+          </div>
           <div class="actions">
             <button id="analyse" class="primary">Hide my details</button>
             <span id="analyseNote" class="note"></span>

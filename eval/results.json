@@ -131,6 +131,32 @@
    }
   }
  },
+ "photo": {
+  "clean": {
+   "letters": 10,
+   "failed": 0,
+   "pii": 68,
+   "piiRead": 64,
+   "keep": 42,
+   "keepRead": 42,
+   "allRight": 7,
+   "words": 1533,
+   "wordsRead": 1519,
+   "seconds": "14 to 27 s"
+  },
+  "rough": {
+   "letters": 10,
+   "failed": 0,
+   "pii": 68,
+   "piiRead": 67,
+   "keep": 42,
+   "keepRead": 42,
+   "allRight": 9,
+   "words": 1533,
+   "wordsRead": 1524,
+   "seconds": "13 to 26 s"
+  }
+ },
  "missedPatterns": [
   {
    "id": "hmrc-late-filing",

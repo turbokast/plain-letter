@@ -39,6 +39,14 @@ export function extractPrompt(letter) {
   ].join('\n');
 }
 
+// Reading a photo of a letter, on the device. Plain text out: the result goes
+// into the letter box for the person to check against the paper.
+export const TRANSCRIBE_PROMPT = [
+  'This is a photo or scan of a printed letter. Copy out all of the text in it, exactly as printed, line by line, from top to bottom.',
+  'Keep every number, reference, date and amount character for character. Do not summarise, correct, explain or leave anything out.',
+  'Return only the text of the letter.',
+].join('\n');
+
 export const EXPLAIN_SCHEMA = {
   type: 'object',
   properties: {

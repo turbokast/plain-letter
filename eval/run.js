@@ -9,7 +9,8 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { LETTERS } from './letters.js';
-import { scoreLetter, summarise } from './score.js';
+import { scoreLetter, summarise, visible } from './score.js';
+import { cleanTranscript } from '../src/core/pipeline.js';
 import { checkFacts } from '../src/core/pipeline.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -20,6 +21,9 @@ function run(detailsFor) {
   const scores = LETTERS.map((l) => ({ ...scoreLetter(l, detailsFor(l)), letter: l }));
   return { scores, summary: summarise(scores) };
 }
+
+const photoPath = join(here, 'photo-output.json');
+const photo = existsSync(photoPath) ? JSON.parse(readFileSync(photoPath, 'utf8')) : null;
 
 const patterns = run(() => []);
 const hybrid = nano ? run((l) => nano.letters?.[l.id]?.output?.personal_details || []) : null;
@@ -76,12 +80,59 @@ if (nano) {
   lines.push('## On-device model run', '');
   lines.push(`Recorded ${nano.recorded} in ${nano.browser || 'Chrome'} through the Firebase AI Logic SDK (mode only_on_device). Time per letter: ${Object.entries(nano.letters).map(([id, v]) => `${id} ${(v.ms / 1000).toFixed(1)} s`).join(', ')}.`, '');
 }
+let photoSummary = null;
+if (photo) {
+  // Reading a picture of the letter on the device: is every labelled detail and every needed fact read exactly?
+  const words = (t) => t.match(/[\p{L}\p{N}£.,'/@-]+/gu) || [];
+  photoSummary = {};
+  const rows = [];
+  const misses = [];
+  for (const kind of ['clean', 'rough']) {
+    const t = { letters: 0, failed: 0, pii: 0, piiRead: 0, keep: 0, keepRead: 0, allRight: 0, words: 0, wordsRead: 0, ms: [] };
+    for (const l of LETTERS) {
+      const r = photo.letters?.[l.id]?.[kind];
+      if (!r) continue;
+      t.letters++;
+      t.pii += l.pii.length;
+      t.keep += l.keep.length;
+      const orig = words(l.text);
+      t.words += orig.length;
+      if (r.error) {
+        t.failed++;
+        misses.push(`- ${l.id} (${kind}): not read (${r.error})`);
+        continue;
+      }
+      const text = cleanTranscript(r.text);
+      t.ms.push(r.ms);
+      const pool = new Map();
+      for (const w of words(text)) pool.set(w, (pool.get(w) || 0) + 1);
+      for (const w of orig) if (pool.get(w) > 0) (t.wordsRead++, pool.set(w, pool.get(w) - 1));
+      const badPii = l.pii.filter((p) => !visible(text, p.text));
+      const badKeep = l.keep.filter((k) => !text.includes(k));
+      t.piiRead += l.pii.length - badPii.length;
+      t.keepRead += l.keep.length - badKeep.length;
+      if (!badPii.length && !badKeep.length) t.allRight++;
+      for (const p of badPii) misses.push(`- ${l.id} (${kind}): ${p.kind} "${p.text}" not read exactly`);
+      for (const k of badKeep) misses.push(`- ${l.id} (${kind}): needed fact "${k}" not read exactly`);
+    }
+    if (!t.letters) continue;
+    const secs = t.ms.length ? `${(Math.min(...t.ms) / 1000).toFixed(0)} to ${(Math.max(...t.ms) / 1000).toFixed(0)} s` : 'n/a';
+    photoSummary[kind] = { ...t, ms: undefined, seconds: secs };
+    rows.push(`| ${kind === 'clean' ? 'Clean: black on white, straight' : 'Rough: grey paper, turned 2 degrees, slight blur, shaded'} | ${t.letters - t.failed}/${t.letters} | ${t.wordsRead}/${t.words} (${pct(t.wordsRead, t.words)}) | ${t.piiRead}/${t.pii} (${pct(t.piiRead, t.pii)}) | ${t.keepRead}/${t.keep} (${pct(t.keepRead, t.keep)}) | ${t.allRight}/${t.letters} | ${secs} |`);
+  }
+  lines.push('## Reading a picture of the letter (on the device)', '');
+  lines.push(`Recorded ${photo.recorded} in ${photo.browser || 'Chrome'}: each sample letter drawn onto a 1240 x 1754 picture (scripts/photo-eval.js), then read by the on-device model through the Firebase AI Logic SDK (mode only_on_device, image input). One run, not cherry-picked. These are drawn pictures, not phone photos of paper: a real photo will do worse.`, '');
+  lines.push('| Picture | Letters read | Words read | Labelled details read exactly | Needed facts read exactly | Letters with every label right | Time per letter |', '|---|---|---|---|---|---|---|', ...rows, '');
+  lines.push('Hiding works on the text that was read, and the picture never leaves the device, so a misread does not expose the true value. But the reply would then carry the misread value. That is why the page asks the person to check the text against the paper.', '');
+  lines.push('### What was not read exactly', '', ...(misses.length ? misses : ['- nothing']), '');
+  console.log('photo', JSON.stringify(photoSummary));
+}
 lines.push('## Limits', '', '- The patterns were written while looking at these same letters, so the patterns-only figure is optimistic for letters we have not seen.', '- Ten letters written by us is a small, friendly sample. Real letters vary more (scans, tables, handwriting, Welsh).', '- The labels are ours. A detail we did not think to label is not counted.', '- Names without a title and address lines without a street word cannot be found by patterns; that is the on-device model\'s job, and the user sees the text before it is sent and can hide anything else by hand.', '');
 
 writeFileSync(join(here, 'RESULTS.md'), lines.join('\n'));
 writeFileSync(
   join(here, 'results.json'),
-  JSON.stringify({ patterns: patterns.summary, hybrid: hybrid?.summary || null, missedPatterns: patterns.scores.map((s) => ({ id: s.id, missed: s.missed, lost: s.lost })), missedHybrid: hybrid?.scores.map((s) => ({ id: s.id, missed: s.missed, lost: s.lost })) || null }, null, 1)
+  JSON.stringify({ patterns: patterns.summary, hybrid: hybrid?.summary || null, photo: photoSummary, missedPatterns: patterns.scores.map((s) => ({ id: s.id, missed: s.missed, lost: s.lost })), missedHybrid: hybrid?.scores.map((s) => ({ id: s.id, missed: s.missed, lost: s.lost })) || null }, null, 1)
 );
 console.log(lines.slice(4, 9).join('\n'));
 console.log('\nmissed (patterns only):');

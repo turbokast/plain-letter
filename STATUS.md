@@ -1,18 +1,25 @@
-# Status: Sat 14 Nov 2026
+# Status: Mon 16 Nov 2026
 
 Works (run and checked in headless Chrome 157, see README "What is done"):
 - on-device hiding through Firebase AI Logic (`only_on_device`), pattern check, leak gate, fill-back
 - on-device explanation and reply ("stay on this device"), on-device rewrite
-- 36 offline tests pass; evaluation: 67/68 details hidden with model plus patterns, 61/68 with patterns alone
+- photo of a letter read into text on the device (drawn test pictures only)
+- a browser with no on-device model: basic hiding, device-only buttons off, no request leaves the page
+- 42 offline tests pass; evaluation: 67/68 details hidden with model plus patterns, 61/68 with patterns alone; pictures: 64/68 and 67/68 labelled details read exactly, 42/42 needed facts
+
+Fixed on 16 Nov (both present in the 14 Nov build):
+- the SDK sent `only_on_device` calls to the cloud when the browser had no on-device model at all; the app now refuses those calls itself
+- the gate refused to send some letters because a hidden town was still readable elsewhere in the text
 
 Untested:
 - the cloud step (no Firebase project yet), App Check, hosting, free-tier quota
-- a browser without the on-device model, phones, screen readers, long letters
+- phone photos of real paper, other browsers, phones, screen readers, long letters
 
 Not built:
-- photo input, submission text, demo script, video
+- hosted copy, video; SUBMISSION.md and DEMO-SCRIPT.md are drafts with open items
 
 Risks:
 - "Gemini Nano 4" in the rules against `nano_v3` in Chrome's log
 - on-device output varies from run to run
+- the device-only guard is checked against firebase 13.3.0 only
 - web only, so mainly in the running for Best Web/Chrome

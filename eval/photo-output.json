@@ -1,0 +1,188 @@
+{
+ "recorded": "2026-11-16",
+ "browser": "headless Chrome 157.0.8103.50 on Linux, NVIDIA RTX 4060 8 GB",
+ "model": "Gemini Nano (Chrome built-in)",
+ "how": "scripts/cdp.py eval scripts/photo-eval.js: each letter in eval/letters.js drawn onto a 1240 x 1754 canvas (clean and rough), passed through the page's prepareImage and window.__plainLetter.ai.transcribe, i.e. Firebase AI Logic getGenerativeModel with mode only_on_device and image input. One run, not cherry-picked.",
+ "letters": {
+  "hmrc-late-filing": {
+   "clean": {
+    "ms": 18816,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "HM Revenue and Customs\nSelf Assessment\nBX9 1AS\n\nMr Alan Example\n12 Sample Road\nDundee\nDD1 9XZ\n\nDate of issue 2 November 2026\nUnique Taxpayer Reference (UTR) 12345 67890\nNational Insurance number QQ 12 34 56 C\n\nDear Mr Example\n\nLate filing penalty: tax year 6 April 2025 to 5 April 2026\n\nWe have charged you a penalty of £100 because we did not receive your Self Assessment tax return by the deadline of 31 October 2026 for paper returns.\n\nWhat you need to do now\n\nYou must pay the penalty by 14 December 2026. If you do not pay, we will charge interest. If your return is more than 3 months late we will charge £10 for each day it remains outstanding, for up to 90 days.\n\nIf you think this penalty is wrong\nYou can appeal within 30 days of the date of this notice if you had a reasonable excuse. Phone us on 0300 200 3310 or write to the address above quoting your UTR.\n\nYours sincerely\nHM Revenue and Customs"
+   },
+   "rough": {
+    "ms": 23400,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "HM Revenue and Customs\nSelf Assessment\nFX9 1AS\n\nMr Alan Example\n12 Sample Road\nDundee\nDD1 9ZZ\n\nDate of issue 2 November 2026\nUnique Taxpayer Reference (UTR) 12345 67890\nNational Insurance number QQ 12 34 56 C\n\nDear Mr Example\n\nLate filing penalty: tax year 6 April 2025 to 5 Appraisal 2026\n\nWe have charged you a penalty of £100 because we did not receive your Self Assessment tax return by the deadline of 31 October 2026 for paper returns.\n\nWhat you need to do now\n\nYou must pay the penalty by 14 December 2026. If you do not pay, we will charge interest. ‘If your return is more than 3 months late we will charge £10 for each day it remains outstanding, for up to 90 days.\n\nIf you think this penalty is wrong\n\nYou can appeal within 30 days of the date of this notice if you had a reasonable excuse. Phone us on 0300 200 3310 or write to the address above quoting your UTR.\n\nYours sincerely\n\nHM Revenue and Customs"
+   }
+  },
+  "council-tax-reminder": {
+   "clean": {
+    "ms": 17333,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Northbridge Council\nRevenues and Benefits, PO Box 100, Northbridge\n\nMs Priya Sampleton\nFlat 2, 48 Canal Street\nNorthbridge\nNB4 2QY\n\nAccount number: 7104482913\nDate: 5 November 2026\n\nCOUNCIL TAX REMINDER NOTICE\n\nDear Ms Sampleton,\n\nOur records show that your council tax instalment of £148.00, due on 1 November 2026, has not been paid.\n\nYou must pay £148.00 within 7 days of the date of this notice. If you do not, you will lose your right to pay by instalments and the full balance of £740.00 for the year will become due. We then apply to the Magistrates' Court for a liability order, which will add costs of £82.50 to your account.\n\nIf you are struggling to pay, contact us on 01632 960123 or email revenues@northbridge.example.com. You may be entitled to Council Tax Reduction.\n\nRevenues Team"
+   },
+   "rough": {
+    "ms": 20398,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Northbridge Council\nRevenues and Benefits, PO Box 100, Northbridge\n\nMs Priya Sampleton\nFlat 2, 48 Canal Street\nNorthbridge\nNB4 2QY\n\nAccount number: 7104482913\nDate: 5 November 2026\n\nCOUNCIL TAX REMINDER NOTICE\n\nDear Ms Sampleton,\n\nOur records show that your council tax instalment of £148.00, due on 1 November 2026, has not been paid.\n\nYou must pay £148.00 within 7 days of the date of this notice. If you do not, you will lose your right to pay instalments and the full balance of £740.00 for the year will become due. We may then apply to the Magistrates' Court for a liability order, which will add costs of £82.50 to your account.\n\nIf you are struggling to pay, contact us on 01632 960123 or email revenues@northbridge.example.com. You may be entitled to Council Tax Reduction.\n\nRevenues Team"
+   }
+  },
+  "landlord-rent-increase": {
+   "clean": {
+    "ms": 18764,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Harbour Lettings Ltd\n3 Quay Lane, Portsde PS1 4AB\n\n10 November 2026\n\nTo: Tomasz Nowak-Sample and Erin Placeholder\nFlat 5, 17 Mill Wynd, Portside, PS2 7TT\n\nTenancy reference: HL/2023/00417\n\nDear Tomasz and Erin,\n\nNOTICE OF RENT INCREASE\n\nWe are writing to tell you that the rent for the property above will go from £780 per calendar month to £865 per calendar month. The new rent starts on 1 February 2027.\n\nIf you do not agree with the increase you have the right to refer this notice to a rent officer or tribunal before the new rent starts. If we do not hear from you by 10 December 2026 we will take it that you accept the new rent, and your standing order should be changed from the February payment.\n\nIf you have any questions please call the office on 01632 960777 or email tenants@harbourlettings.example.com.\n\nYours sincerely,\nDana Fictive\nProperty Manager"
+   },
+   "rough": {
+    "ms": 15905,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Harbour Lettings Ltd\n3 Quay Lane, Portsmouth PS1 4AB\n10 November 2026\n\nTo: Tomasz Nowak-Sample and Erin Placeholder\nFlat 5, 17 Mill Wynd, Portsmouth, PS2 7TT\n\nTenancy reference: HL/2023/00417\n\nDear Tomasz and Erin,\n\nNOTICE OF RENT INCREASE\n\nWe are writing to tell you that the rent for the property above will go up from £780 per calendar month to £865 per calendar month. The new rent starts on 1 February 2027.\n\nIf you do not agree with the increase you have the right to refer this notice to a rent officer or tribunal before the new rent starts. If we do not hear from you by 10 December 2026 we will take it that you accept the new rent, and your standing order should be changed from the February payment.\n\nIf you have any questions please call the office on 01632 960777 or email tenants@harbourlettings.example.com.\n\nYours sincerely,\nDana Fictive\nProperty Manager"
+   }
+  },
+  "dwp-overpayment": {
+   "clean": {
+    "ms": 18069,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Department for Work and Pensions\nDebt Management\nMail Handling Site A, Wolverhampton, WV98 2DF\n\nMrs Grace Teserton\n9 Orchard Close\nLittle Fakenham\nLF3 8RW\n\nOur reference: UC-88204417-OP\nNational insurance number: QQ987654A\nDate of birth: 14/03/1984\n\n4 November 2026\n\nDear Mrs Teserton\n\nYou have been paid too much Universal Credit\n\nBetween 1 June 2026 and 31 August 2026 you were paid £612.48 more Universal Credit than you were entitled to. This is because your earnings changed and we were not told at the time.\n\nYou have to pay this money back. We will take £46.20 from each Universal Credit payment starting from your payment on 12 December 2026 until the money is repaid.\n\nIf you disagree with this decision you can ask to look at it again. This is called a mandatory reconsideration. You must ask within one month of the date of this letter. If the deductions will leave you unable to pay for essentials, call Debt Management on 0800 916 0647 to ask for a lower rate.\n\nYours sincerely\n\nOffice Manager"
+   },
+   "rough": {
+    "ms": 26219,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Department for Work and Pensions\nDebt Management\nMail Handling Site A, Wolverhampton, WV98 2DF\n\nMrs Grace Testerton\n9 Orchard Close\nLittle Heatham\nLF3 8RW\n\nOur reference: UC-88204417-OP\nNational Insurance number: QQ987654A\nDate of birth: 14/03/1984\n\n4 November 2026\n\nDear Mrs Testerton\n\nYou have been paid too much Universal Credit\n\nBetween 1 June 2026 and 31 August 2026 you were paid £612.48 more Universal Credit than you were entitled to. This is because your earnings changed and we were not told at the time.\n\nYou have to pay this money back. We will take £46.20 from each Universal Credit payment starting from your payment on 12 December 2026 until the money is repaid.\n\nIf you disagree with this decision you can ask us to look at it again. This is a mandatory reconsideration. You must ask within one month of the date of this letter. If the deductions will leave you unable to pay for essentials, call Debt Managers on 0800 916 0647 to ask for a lower rate.\n\nYours sincerely\n\nOffice Manager"
+   }
+  },
+  "parking-pcn": {
+   "clean": {
+    "ms": 14310,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Eastmere Borough Council Parking Services\n\nPENALTY CHARGE NOTICE: NOTICE TO OWNER\n\nPCN number: EM40078812\n\nVehicle registration: AB12 CDE\n\nDate of contravention: 19/10/2026 at 14:32, Market Square car park\n\nContravention: 83 Parked in a car park without clearly displaying a valid pay and display ticket\n\nRegistered keeper:\nDr Samuel Mockford\n221 Station Avenue\nEastmere\nEM9 5HH\n\nDate of this notice: 9 November 2026\n\nA penalty charge of £70 is now due. The 14 day period for paying the reduced charge of £35 has ended.\n\nYou must either pay £70 or make formal representations within 28 days of the date this notice is served. If you do neither, we may issue a charge certificate increasing the penalty by 50% to £105.\n\nTo pay or challenge online go to eastmere.example.com/pcn and enter the PCN number and vehicle registration."
+   },
+   "rough": {
+    "ms": 17006,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Eastmere Borough Council Parking Services\n\nPENALTY CHARGE NOTICE: NOTICE TO OWNER\n\nPCN number: EM40078812\n\nVehicle registration: AB12 CDE\n\nDate of contravention: 19/10/2026 at 14:32, Market Square car park\n\nContravention: 83 Parked in a car park without clearly displaying a valid pay and display ticket\n\nRegistered keeper:\n\nDr Samuel Mockford\n\n221 Station Avenue\n\nEastmere\n\nEM9 5HH\n\nDate of this notice: 9 November 2026\n\nA penalty charge of £70 is now due. The 14 day period for paying the reduced charge of £35 has ended.\n\nYou must either pay £70 or make formal representations within 28 days of the date this notice is served. If you do neither, we may issue a charge certificate increasing the penalty by 50% to £105.\n\nTo pay or challenge online go to eastmere.example.com/pcn and enter the PCN number and vehicle registration."
+   }
+  },
+  "county-court-claim": {
+   "clean": {
+    "ms": 21839,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "In the County Court Business Centre\nClaim Number: K7QZ41189\nClaimant: Brightline Finance Limited\nDefendant: Jordan Specimen, 6 Weaver Terrace, Old Mockton, OM12 4JD\nIssue date: 3 November 2026\n\nParticulars of claim\nThe claimant claims the sum of £1,842.17 being monies due under a regulated credit agreement, account 40021987, together with interest of £96.40 and a court fee of £115.\nAmount claimed £2,053.57\n\nTo the defendant\nYou have 14 days from the date of service to respond to this claim. You can pay the amount claimed, admit all or part of the claim and ask for time to pay, or dispute the claim by filing a defence. If you need more time you can file an acknowledgement of service, which gives you 28 days from the date of service to file a defence.\n\nIf you do nothing, judgment may be entered against you. A county court judgment will be recorded on the Register of Judgments and may make it difficult for you to get credit.\n\nRespond online at the Money Claim Online service using the claim number and the password 48213377."
+   },
+   "rough": {
+    "ms": 21892,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "In the County Court Business Centre\nClaim Number: K7QZ41B9\nClaimant: Brightline Finance Limited\nDefendant: Jordan Specimen, 6 Weaver Terrace, Old Mockton, OM12 4JD\nIssue date: 3 November 2026\nParticulars of claim\nThe claimant claims the sum of £1,842.17 being monies due under a regulated credit agreement, account 40021987, together with interest of £96.40 and a court fee of £115.\nAmount claimed £2,053.57\nTo the defendant\nYou have 14 days from the date of service to respond to this claim. You can pay the amount claimed, admit all or part of the claim and ask for time to pay, or dispute the claim by filing a defence. If you need more time you can file an acknowledgment of service, which gives you 28 days from the date of service to file a defence.\nIf you do nothing, judgment may be entered against you. A county court judgment will be recorded on the Register of Judgments and may make it difficult for you to get credit.\nRespond online at the Money Claim Online service using the claim number and the password 48213377."
+   }
+  },
+  "energy-debt": {
+   "clean": {
+    "ms": 27086,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Kelpie Energy\nCustomer Accounts, PO Box 7, Glasgow\n\nMiss Aroha Sampleson\n3/2, 91 Tollcross Road\nGlasgow\nG32 8ZZ\n\nCustomer number 5500 1234 77\nEmail on file: aroha.sampleson@example.com\nMobile on file: 07700 900123\n\n6 November 2026\n\nDear Miss Sampleson\n\nYour account is overdue: £418.90\n\nWe wrote to you on 2 October 2026 and 20 October 2026 about the balance on your electricity account. We have not received payment.\n\nPlease pay £418.90 by 20 November 2026 or call us on 0330 000 0000 to agree a payment plan. If we do not hear from you, we may pass the debt to a collection agency and may apply to the court for a warrant to fit a prepayment meter at your home. The costs of doing this, up to £150, may be added to your account.\n\nIf you are of pensioneable age, disabled or have a long-term health condition, tell us: you may be able to join our Priority Services Register.\n\nKelpie Energy Collections Team"
+   },
+   "rough": {
+    "ms": 21182,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Kelpie Energy\nCustomer Accounts, PO Box 7, Glasgow\nMiss Aroha Sampleson\n3/2, 91 Tollcross Road\nGlasgow\nG32 8ZZ\nCustomer number 5500 1234 77\nEmail on file: aroha.sampleson@example.com\nMobile on file: 07700 900123\n\n6 November 2026\n\nDear Miss Sampleson\n\nYour account is overdue: £418.90\n\nWe wrote to you on 2 October 2026 and 20 October 2026 about the balance on your electricity account. We have not received payment.\n\nPlease pay £418.90 by 20 November 2026 or call us on 0330 0000 000 to agree a payment plan. If we do not hear from you, we may pass the debt to a collection agency and may apply to the court for a warrant to fit a prepayment meter at your home. The costs of doing this, up to £150, may be added to your account.\n\nIf you are of pensionable age, disabled or have a long-term health condition, tell us: you may be able to join our Priority Services Register.\n\nKelpie Energy Collections Team"
+   }
+  },
+  "hmrc-tax-code": {
+   "clean": {
+    "ms": 20641,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "HM Revenue and Customs\nPay As You Earn\nMx Robin Dummyson\nThe Old Bakery\n4 Chapel Lane\nNether Sample\nNS6 1PL\nNational insurance number QQ 44 55 66 D\nEmployer PAYE reference 123/AB45678\nDate 1 November 2026\n\nDear Mx Dummyson\n\nYour tax code for the tax year 6 April 2026 to 5 April 2027\nYour new tax code is 1057L. It replaces your previous code 1257L.\n\nWhy your code has changed\nWe think you owe £400 in tax from an earlier year. To collect it we have reduced your tax-free amount by £2,000 for the rest of this tax year. Your employer, Fictional Foods Ltd, will use the new code from your next pay day.\n\nIf you think this is wrong, or you would rather pay the £400 in one payment, tell us within 30 days. Phone 0300 200 3300 and have your National Insurance number ready."
+   },
+   "rough": {
+    "ms": 23438,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "HM Revenue and Customs\nPay As You Earn\nMx Robin Dummyson\nThe Old Bakery SNP\n4 Chapel Lane\nNether Sample\nNS6 1PL\nNational insurance number QQ 44 55 66 D\nEmployer PAYE reference 123/AB45678\nDate 1 November 2026\n\nDear Mx Dummyson\n\nYour tax code for the tax year 6 April 2026 to 5 April 2027\nYour new tax code is 1057L. It replaces your previous code 1257L.\n\nWhy your code has changed\nWe think you owe £400 in tax from an earlier year. To collect it we have reduced your tax-free amount by £2,000 for the rest of this tax year. Your employer, Fictional Foods Ltd, will use the new code from your next pay day.\n\nIf you think this is wrong, or you would rather pay the £400 in one payment, tell us within 30 days. Phone 0300 200 3300 and have your National Insurance number ready."
+   }
+  },
+  "bank-overdraft": {
+   "clean": {
+    "ms": 19565,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Tidewater bank plc\nPrivate and confidential\nMr K Placeholder-Jones\nRose Cottage, 2 Ferry Row\nSaltmarsh SM4 0XX\n\n7 November 2026\n\nDear Mr Placeholder-Jones,\n\nYour arranged overdraft\n\nSort code 40-51-62 Account number 31926819\n\nWe reviewed your account on 5 November 2026. Your arranged overdraft limit of £1,500 will be removed on 7 December 2026. On that date any overdrawn balance becomes repayable in full. Your balance today is £1,212.36 overdrawn.\n\nIf you cannot repay the balance by 7 December 2026 please call us auf 0345 000 0000 before that date so that we can agree a repayment plan. If we do not hear from you, we may register a default with the credit reference agencies and close your account.\n\nYou can get free, independent debt advice from StepChange or Citizens Advice.\n\nYours sincerely,\nCustomer Lending Team"
+   },
+   "rough": {
+    "ms": 13412,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "Tidewater Bank plc\nPrivate and confidential\nMr K Placeholder-Jones\nRose Cottage, 2 Ferry Row\nSaltmarsh SM4 0XX\n7 November 2026\nDear Mr Placeholder-Jones,\nYour arranged overdraft\nSort code 40-51-62 Account number 31926819\nWe reviewed your account on 5 November 2026. Your arranged overdraft limit of £1,500 will be removed on 7 December 2026. On that date any overdrawn balance becomes repayable in full. Your balance today is £1,212.36 overdrawn.\nIf you cannot repay the balance by 7 December 2026 please call us on 0345 000 0000 before that date so that we can agree a repayment plan. If we do not hear from you, we may register a default with the credit reference agencies and close your account.\nYou can get free, independent debt advice from StepChange or Citizens Advice.\nYours sincerely,\nCustomer Lending Team"
+   }
+  },
+  "nhs-penalty-charge": {
+   "clean": {
+    "ms": 18568,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "NHS Business Services Authority\nPenalty Charge Notice\n\nLeila Notreal\n77 Kiln Gardens\nUpper Testbury\nUT2 3EF\n\nNHS number: 943 476 5919\nPCN reference: 2611-447-0093\nDate of birth: 2 May 1991\n\nDate: 3 November 2026\n\nOur records show that on 12 August 2026 you claimed a free NHS prescription by declaring that you held a valid prescription prepayment certificate. We could not confirm that you were entitled to it on that date.\n\nYou now need to pay:\nNHS prescription charge £9.90\nPenalty charge £49.50\nTotal £59.40\n\nYou must pay or challenge this notice within 28 days of the date above. If you do not, a surcharge of £24.75 will be added. If you were entitled to free prescriptions on 12 August 2026, you can challenge the notice online or by phoning 0300 330 9291, and the charges will be removed."
+   },
+   "rough": {
+    "ms": 20666,
+    "width": 1131,
+    "height": 1600,
+    "overflow": false,
+    "source": "on-device",
+    "text": "NHS Business Services Authority\nPenalty Charge Notice\n\nLeila Notreal\n77 Kiln Gardens\nUpper Testbury\nUT2 3EF\n\nNHS number: 943 476 5919\nPCN reference: 2611-447-0093\nDate of birth: 2 May 1991\n\nDate: 3 November 2026\n\nOur records show that on 12 August 2026 you claimed a free NHS prescription by declaring that you held a valid prescription prepayment certificate. We could not confirm that you were entitled to it on that date.\n\nYou now need to pay:\nNHS prescription charge £9.90\nPenalty charge £49.50\nTotal £59.40\n\nYou must pay or challenge this notice within 28 days of the date above. If you do not, a surcharge of £24.75 will be added. If you were entitled to free prescriptions on 12 August 2026, you can challenge the notice online or by phoning 0300 330 9291, and the charges will be removed."
+   }
+  }
+ }
+}

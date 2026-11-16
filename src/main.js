@@ -37,7 +37,7 @@ const session = createSession(ai);
 let showPlaceholders = false;
 
 // For automated checks of this page (tests drive it from outside).
-window.__plainLetter = { ai, session, letters: LETTERS };
+window.__plainLetter = { ai, session, letters: LETTERS, prepareImage: (f) => prepareImage(f) };
 
 // ---------- status ----------
 
@@ -55,6 +55,74 @@ async function drawStatus() {
 }
 
 // ---------- step 1 ----------
+
+// A photo is read into text by the on-device model and by nothing else. With
+// no on-device model the button is switched off: there is no cloud path for a
+// photo, because a photo cannot have its details hidden first.
+const PHOTO_MAX_SIDE = 1600;
+
+/** Scale a chosen image down in this browser and return it as base64 JPEG. */
+async function prepareImage(file) {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, PHOTO_MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close?.();
+  return { mimeType: 'image/jpeg', data: canvas.toDataURL('image/jpeg', 0.92).split(',')[1], width: canvas.width, height: canvas.height };
+}
+
+async function downloadModel() {
+  $('download').hidden = false;
+  $('downloadText').textContent = 'Getting the on-device model. This happens once.';
+  try {
+    await ai.prepare((p) => {
+      $('downloadBar').value = p;
+      $('downloadText').textContent = `Getting the on-device model: ${Math.round(p * 100)}%`;
+    });
+  } catch (e) {
+    console.warn('On-device model could not be prepared', e);
+  }
+  $('download').hidden = true;
+  await drawStatus();
+}
+
+async function drawPhoto() {
+  const s = await ai.photoStatus();
+  const off = s === 'unavailable';
+  $('photoButton').disabled = off;
+  $('photoButton').classList.toggle('off', off);
+  if (off) $('photoNote').textContent = 'Photos need the on-device model, which this browser does not have. A photo is never sent to the cloud, so type or paste the text instead.';
+}
+
+$('photoButton').onclick = () => $('photo').click();
+$('photo').onchange = () =>
+  busy($('photoButton'), 'Reading on this device…', async () => {
+    const file = $('photo').files[0];
+    $('photo').value = '';
+    if (!file) return;
+    $('photoNote').className = 'note';
+    $('photoNote').textContent = '';
+    try {
+      if (!/^image\/(jpeg|png)$/.test(file.type)) throw new Error('Choose a JPEG or PNG picture.');
+      const status = await ai.onDeviceStatus();
+      if (status === 'downloadable' || status === 'downloading') await downloadModel();
+      const image = await prepareImage(file);
+      const t0 = performance.now();
+      const text = await session.readPhoto(image);
+      $('letter').value = text;
+      $('photoNote').textContent = `Read on this device in ${((performance.now() - t0) / 1000).toFixed(1)} s. The photo was not sent anywhere. Check the text against the paper, numbers above all, and correct it before you go on.`;
+      $('letter').focus();
+    } catch (e) {
+      $('photoNote').className = 'err';
+      $('photoNote').textContent = `The photo could not be read (${e.message}). Nothing was sent. You can type or paste the text instead.`;
+    }
+    drawLedger();
+  });
 
 for (const l of LETTERS) {
   const b = document.createElement('button');
@@ -89,20 +157,7 @@ $('analyse').onclick = () =>
       return;
     }
     const status = await ai.onDeviceStatus();
-    if (status === 'downloadable' || status === 'downloading') {
-      $('download').hidden = false;
-      $('downloadText').textContent = 'Getting the on-device model. This happens once.';
-      try {
-        await ai.prepare((p) => {
-          $('downloadBar').value = p;
-          $('downloadText').textContent = `Getting the on-device model: ${Math.round(p * 100)}%`;
-        });
-      } catch (e) {
-        console.warn('On-device model could not be prepared', e);
-      }
-      $('download').hidden = true;
-      await drawStatus();
-    }
+    if (status === 'downloadable' || status === 'downloading') await downloadModel();
     const t0 = performance.now();
     await session.analyse(letter);
     session.state.ms = Math.round(performance.now() - t0);
@@ -160,6 +215,10 @@ function drawStep2() {
   const un = r.unlocated;
   $('unlocated').hidden = !un.length;
   $('unlocated').textContent = un.length ? `Listed but not found word for word in the letter, so not hidden: ${un.map((u) => `"${u.text}"`).join(', ')}. If you can see it in the text above, type it in the box below.` : '';
+  const noModel = st.level !== 'model+patterns';
+  $('explainLocal').disabled = noModel;
+  $('explainLocal').classList.toggle('off', noModel);
+  $('explainLocal').title = noModel ? 'Needs the on-device model, which did not run in this browser.' : '';
   $('explain').textContent = ai.hasCloud ? 'Explain it and draft a reply' : 'Explain it and draft a reply (demo answer)';
   $('explainNote').textContent = ai.hasCloud
     ? 'The first button sends the text above, and only that text, to the cloud model.'
@@ -277,4 +336,5 @@ function drawLedger() {
 }
 
 drawStatus();
+drawPhoto();
 drawLedger();

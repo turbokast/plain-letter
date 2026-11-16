@@ -5,6 +5,7 @@
 //   ai.extract(letter)            on the device only, sees the full letter
 //   ai.explain(redacted, opts)    cloud (or on-device when asked), sees the redacted letter only
 //   ai.rewrite(redacted, how)     on-device preferred, sees the redacted reply only
+//   ai.transcribe(image)          on the device only, sees the photo; optional
 
 import { redact, findLeaks, locate } from './redact.js';
 import { fillBack, fillBackDeep } from './fillback.js';
@@ -36,6 +37,19 @@ export function checkFacts(letter, facts) {
   return out;
 }
 
+/** Tidy what the on-device model returns for a photo: no code fences, no "Here is the text" line, no trailing spaces. */
+export function cleanTranscript(text) {
+  let t = String(text || '').replace(/\r\n?/g, '\n');
+  t = t.replace(/^\s*```[a-z]*\n/i, '').replace(/\n```\s*$/, '');
+  t = t.replace(/^\s*(?:here is|here's|sure)[^\n]{0,80}:\s*\n+/i, '');
+  return t
+    .split('\n')
+    .map((l) => l.replace(/[ \t]+$/, ''))
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 export function createSession(ai, { now = () => new Date() } = {}) {
   /** Everything that was handed to a cloud-capable call, exactly as sent. */
   const outbound = [];
@@ -55,6 +69,20 @@ export function createSession(ai, { now = () => new Date() } = {}) {
     outbound,
     get state() {
       return state;
+    },
+
+    /**
+     * Before step 1, optional: read a photo of the letter into text on the
+     * device. The image goes to the on-device call only; there is no cloud
+     * path for it, so with no on-device model this refuses instead.
+     */
+    async readPhoto(image) {
+      if (typeof ai.transcribe !== 'function') throw new Error('Reading a photo needs the on-device model.');
+      const { text, source } = await ai.transcribe(image);
+      if (source !== 'on-device') throw new Error('The photo was not read on this device, so the result was thrown away.');
+      const letter = cleanTranscript(text);
+      if (!letter) throw new Error('No text could be read from the photo.');
+      return letter;
     },
 
     /**

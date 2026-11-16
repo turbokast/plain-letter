@@ -136,3 +136,37 @@ test('facts from the model are shown only if their words are in the letter', asy
   assert.equal(checkFacts(hmrc.text, { amount: '£100', deadline: '14 December 2026' }).deadline, '14 December 2026');
   assert.equal(checkFacts(hmrc.text, null), null);
 });
+
+// ---------- photo of a letter ----------
+
+import { cleanTranscript } from '../src/core/pipeline.js';
+
+test('a photo is read by the on-device call only and nothing is logged as sent', async () => {
+  const image = { mimeType: 'image/png', data: 'AAAA' };
+  const ai = createMockAI({ extract: nanoLike, source: 'cloud', transcribe: () => ({ text: '```\n' + hmrc.text + '\n```', source: 'on-device' }) });
+  const s = createSession(ai);
+  const letter = await s.readPhoto(image);
+  assert.equal(letter, hmrc.text);
+  assert.equal(s.outbound.length, 0);
+  await s.analyse(letter);
+  await s.explain();
+  // the image went to transcribe and to nothing else
+  for (const c of ai.calls) if (c.fn !== 'transcribe') assert.ok(typeof c.input === 'string' && !c.input.includes('AAAA'));
+  const sent = ai.calls.find((c) => c.fn === 'explain').input;
+  for (const p of hmrc.pii) assert.ok(!visible(sent, p.text), `${p.text} was sent`);
+});
+
+test('a photo is refused when there is no on-device model, or when the answer did not come from the device', async () => {
+  const none = createSession(createMockAI({ extract: nanoLike }));
+  await assert.rejects(() => none.readPhoto({ mimeType: 'image/png', data: 'AAAA' }), /on-device model/);
+  const wrong = createSession(createMockAI({ extract: nanoLike, transcribe: () => ({ text: 'x', source: 'cloud' }) }));
+  await assert.rejects(() => wrong.readPhoto({ mimeType: 'image/png', data: 'AAAA' }), /not read on this device/);
+  const empty = createSession(createMockAI({ extract: nanoLike, transcribe: () => ({ text: '  ', source: 'on-device' }) }));
+  await assert.rejects(() => empty.readPhoto({ mimeType: 'image/png', data: 'AAAA' }), /No text/);
+});
+
+test('cleanTranscript strips fences, a lead-in line and trailing spaces, and keeps the letter', () => {
+  assert.equal(cleanTranscript('Here is the text of the letter:\n\nDear Mr Example  \n\n\n\nYou owe £100.\n'), 'Dear Mr Example\n\nYou owe £100.');
+  assert.equal(cleanTranscript('```text\nA\r\nB\n```'), 'A\nB');
+  assert.equal(cleanTranscript('Here is what we need from you: a reply by 3 May.'), 'Here is what we need from you: a reply by 3 May.');
+});

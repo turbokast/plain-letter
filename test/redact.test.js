@@ -97,3 +97,33 @@ test('fillBackDeep walks objects and arrays', () => {
   assert.deepEqual(r.value, { a: 'Hi Alan', b: ['x Alan', { c: '[REFERENCE_9]' }], n: 3 });
   assert.deepEqual(r.unknown, ['[REFERENCE_9]']);
 });
+
+// ---------- the redaction and the gate must agree ----------
+
+import { readFileSync as _read } from 'node:fs';
+import { LETTERS as _LETTERS } from '../eval/letters.js';
+import { findLeaks as _findLeaks, redact as _redact } from '../src/core/redact.js';
+
+test('a town hidden in the address block is hidden everywhere, so the gate does not block the send', () => {
+  const letter = _LETTERS.find((l) => l.id === 'energy-debt');
+  // what the on-device model returned on 16 Nov 2026: no "Glasgow"
+  const details = [
+    { kind: 'NAME', text: 'Miss Aroha Sampleson' },
+    { kind: 'ADDRESS', text: '3/2, 91 Tollcross Road' },
+    { kind: 'POSTCODE', text: 'G32 8ZZ' },
+  ];
+  const r = _redact(letter.text, details);
+  assert.deepEqual(_findLeaks(r.redacted, r.map), []);
+  assert.ok(!r.redacted.includes('Glasgow'));
+  for (const k of letter.keep) assert.ok(r.redacted.includes(k), `${k} was hidden by mistake`);
+});
+
+test('every sample letter passes the gate, with patterns alone and with the recorded on-device output', () => {
+  const nano = JSON.parse(_read(new URL('../eval/nano-output.json', import.meta.url), 'utf8'));
+  for (const l of _LETTERS) {
+    for (const details of [[], nano.letters[l.id].output.personal_details || []]) {
+      const r = _redact(l.text, details);
+      assert.deepEqual(_findLeaks(r.redacted, r.map), [], `${l.id}: the gate would block`);
+    }
+  }
+});

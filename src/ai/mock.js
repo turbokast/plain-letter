@@ -6,8 +6,9 @@
  * @param {object} [o]
  * @param {(letter:string)=>object} [o.extract] scripted on-device answer; omit for "no on-device model"
  * @param {string} [o.source] what explain reports as its source
+ * @param {(image:object)=>{text:string,source:string}} [o.transcribe] scripted photo reading; omit for "cannot read photos"
  */
-export function createMockAI({ extract = null, source = 'demo' } = {}) {
+export function createMockAI({ extract = null, source = 'demo', transcribe = null } = {}) {
   const calls = [];
   return {
     name: 'mock',
@@ -19,6 +20,14 @@ export function createMockAI({ extract = null, source = 'demo' } = {}) {
     async prepare() {
       return extract ? 'available' : 'unavailable';
     },
+    ...(transcribe
+      ? {
+          async transcribe(image) {
+            calls.push({ fn: 'transcribe', input: image });
+            return transcribe(image);
+          },
+        }
+      : {}),
     async extract(letter) {
       calls.push({ fn: 'extract', input: letter });
       if (!extract) throw new Error('No on-device model in this browser.');
