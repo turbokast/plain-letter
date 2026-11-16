@@ -44,7 +44,7 @@ Needs Node 22 and a desktop Chrome that has the built-in on-device model (checke
 
 ```
 npm install
-npm test          # 40 offline tests, no network, no model
+npm test          # 42 offline tests, no network, no model
 npm run eval      # rewrites eval/RESULTS.md from the sample letters
 npm run dev       # http://localhost:5174
 ```
