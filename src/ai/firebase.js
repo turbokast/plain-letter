@@ -20,7 +20,7 @@
 //   3. checks afterwards that the SDK reports the answer came from the device.
 
 import { initializeApp } from 'firebase/app';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, ReCaptchaV3Provider } from 'firebase/app-check';
+import { CustomProvider, initializeAppCheck, ReCaptchaEnterpriseProvider, ReCaptchaV3Provider } from 'firebase/app-check';
 import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, InferenceSource } from 'firebase/ai';
 import { EXTRACT_SCHEMA, EXPLAIN_SCHEMA, EXPLAIN_SYSTEM, TRANSCRIBE_PROMPT, extractPrompt, explainPrompt, rewritePrompt } from '../core/prompts.js';
 
@@ -64,10 +64,18 @@ export function createFirebaseAI({ config, appCheck = {}, cloudModel, cloudStand
   if (hasCloud) {
     // Firebase AI Logic requires App Check. A debug token is used in
     // development and for the judges' test build; reCAPTCHA on the hosted site.
+    // App Check is only switched on by initializeAppCheck(); setting the debug
+    // token alone does nothing (found 17 Nov 2026: requests went out with no
+    // App Check header). With a debug token and no site key, a provider that
+    // can never attest is used: in debug mode the SDK exchanges the debug
+    // token instead and never asks the provider.
     if (appCheck.debugToken) self.FIREBASE_APPCHECK_DEBUG_TOKEN = appCheck.debugToken;
     if (appCheck.siteKey) {
       const Provider = appCheck.enterprise ? ReCaptchaEnterpriseProvider : ReCaptchaV3Provider;
       initializeAppCheck(app, { provider: new Provider(appCheck.siteKey), isTokenAutoRefreshEnabled: true });
+    } else if (appCheck.debugToken) {
+      const debugOnly = new CustomProvider({ getToken: () => Promise.reject(new Error('App Check: debug token only, no attestation provider')) });
+      initializeAppCheck(app, { provider: debugOnly, isTokenAutoRefreshEnabled: true });
     }
   }
 

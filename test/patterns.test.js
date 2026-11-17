@@ -72,3 +72,10 @@ test('check digits', () => {
   assert.equal(nhsCheck('9434765919'), true);
   assert.equal(nhsCheck('9434765918'), false);
 });
+
+test('address on one line: town between the street and the postcode is hidden', () => {
+  const t = 'Defendant: Jordan Specimen, 6 Weaver Terrace, Old Mockton, OM12 4JD';
+  has(t, 'ADDRESS', '6 Weaver Terrace');
+  has(t, 'ADDRESS', 'Old Mockton');
+  has(t, 'POSTCODE', 'OM12 4JD');
+});

@@ -2,7 +2,7 @@
  "patterns": {
   "letters": 10,
   "pii": 68,
-  "hidden": 61,
+  "hidden": 62,
   "keep": 42,
   "kept": 42,
   "lettersFullyHidden": 7,
@@ -13,7 +13,7 @@
    },
    "ADDRESS": {
     "total": 17,
-    "hidden": 16
+    "hidden": 17
    },
    "POSTCODE": {
     "total": 10,
@@ -68,10 +68,10 @@
  "hybrid": {
   "letters": 10,
   "pii": 68,
-  "hidden": 67,
+  "hidden": 68,
   "keep": 42,
   "kept": 42,
-  "lettersFullyHidden": 9,
+  "lettersFullyHidden": 10,
   "byKind": {
    "NAME": {
     "total": 19,
@@ -79,7 +79,7 @@
    },
    "ADDRESS": {
     "total": 17,
-    "hidden": 16
+    "hidden": 17
    },
    "POSTCODE": {
     "total": 10,
@@ -206,10 +206,6 @@
     {
      "kind": "NAME",
      "text": "Jordan Specimen"
-    },
-    {
-     "kind": "ADDRESS",
-     "text": "Old Mockton"
     }
    ],
    "lost": []
@@ -268,12 +264,7 @@
   },
   {
    "id": "county-court-claim",
-   "missed": [
-    {
-     "kind": "ADDRESS",
-     "text": "Old Mockton"
-    }
-   ],
+   "missed": [],
    "lost": []
   },
   {

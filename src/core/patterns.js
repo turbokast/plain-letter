@@ -169,7 +169,26 @@ export function addressBlockHits(text, hits) {
       const kinds = kindsOn(n);
       if (kinds.includes('NAME') || kinds.includes('ADDRESS')) top = n;
     }
-    if (top < 0) continue;
+    if (top < 0) {
+      // An address written on one line: "Name, 6 Weaver Terrace, Old Mockton, OM12 4JD".
+      // The parts between the street and the postcode (village, town) match no
+      // pattern of their own; hide each comma-separated part (found 17 Nov 2026,
+      // when a village in such a line reached the cloud in a recorded run).
+      const street = hits
+        .filter((h) => h.kind === 'ADDRESS' && lineOf(h.start) === last && h.end <= pc.start)
+        .sort((a, b) => b.end - a.end)[0];
+      if (!street) continue;
+      let at = street.end;
+      for (const part of text.slice(street.end, pc.start).split(',')) {
+        const lead = part.length - part.trimStart().length;
+        const value = part.trim();
+        if (value.length >= 2 && /^[A-Za-z][A-Za-z'’ .-]*$/.test(value)) {
+          out.push({ kind: 'ADDRESS', start: at + lead, end: at + lead + value.length, text: value, source: 'pattern', order: 99 });
+        }
+        at += part.length + 1;
+      }
+      continue;
+    }
     for (let n = top; n <= last; n++) {
       const kinds = kindsOn(n);
       if (kinds.includes('NAME')) continue;

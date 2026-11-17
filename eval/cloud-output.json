@@ -1,0 +1,464 @@
+{
+ "recorded": "2026-11-17",
+ "browser": "headless Chrome 157, Linux",
+ "cloud_model": "gemini-3.5-flash-lite (Firebase AI Logic, Gemini Developer API, prefer_in_cloud, App Check debug token)",
+ "note": "One recorded run on the 10 made-up sample letters, not cherry-picked. 'sent' is the exact text handed to the cloud call.",
+ "letters": {
+  "hmrc-late-filing": {
+   "level": "model+patterns",
+   "analyseMs": 27899,
+   "explainMs": 3864,
+   "source": "cloud",
+   "placeholders": [
+    "[POSTCODE_1]",
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_2]",
+    "[TAX_REFERENCE_1]",
+    "[NI_NUMBER_1]",
+    "[NAME_2]",
+    "[PHONE_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "HMRC has charged you a £100 penalty because your paper tax return for the tax year 6 April 2025 to 5 April 2026 was not received by the 31 October 2026 deadline. You must pay this penalty by 14 December 2026 or appeal within 30 days if you have a reasonable excuse.",
+    "what_it_means": [
+     "A late filing penalty of £100 has been charged because your paper tax return missed the 31 October 2026 deadline.",
+     "Payment for the penalty must be made by 14 December 2026.",
+     "You have the right to appeal within 30 days of the notice date if you had a reasonable excuse for missing the deadline."
+    ],
+    "if_ignored": "If you do not pay, HMRC will charge interest. If your return is more than 3 months late, they will charge £10 for each day it remains outstanding, for up to 90 days.",
+    "options": [
+     {
+      "title": "Pay the penalty",
+      "detail": "Pay the £100 penalty by 14 December 2026 to avoid interest charges and further penalties."
+     },
+     {
+      "title": "Appeal the penalty",
+      "detail": "If you had a reasonable excuse for the late return, you can appeal within 30 days of the date of the notice by calling [PHONE_1] or writing to HMRC."
+     }
+    ],
+    "reply_draft": "Dear HM Revenue and Customs, Regarding the late filing penalty notice dated 2 November 2026 with Unique Taxpayer Reference (UTR) [TAX_REFERENCE_1] and National Insurance number [NI_NUMBER_1], I am writing to appeal this penalty as I had a reasonable excuse for the delay. Please review my case. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check when your paper tax return was actually sent or delivered to HMRC.",
+     "Check if you have a reasonable excuse that prevented you from meeting the deadline.",
+     "Check your records to confirm the Unique Taxpayer Reference (UTR) [TAX_REFERENCE_1] and National Insurance number [NI_NUMBER_1]."
+    ]
+   },
+   "sent": "HM Revenue and Customs\nSelf Assessment\n[POSTCODE_1]\n\n[NAME_1]\n[ADDRESS_1]\n[ADDRESS_2]\n[POSTCODE_2]\n\nDate of issue 2 November 2026\nUnique Taxpayer Reference (UTR) [TAX_REFERENCE_1]\nNational Insurance number [NI_NUMBER_1]\n\nDear [NAME_2]\n\nLate filing penalty: tax year 6 April 2025 to 5 April 2026\n\nWe have charged you a penalty of £100 because we did not receive your Self Assessment tax return by the deadline of 31 October 2026 for paper returns.\n\nWhat you need to do now\nYou must pay the penalty by 14 December 2026. If you do not pay, we will charge interest. If your return is more than 3 months late we will charge £10 for each day it remains outstanding, for up to 90 days.\n\nIf you think this penalty is wrong\nYou can appeal within 30 days of the date of this notice if you had a reasonable excuse. Phone us on [PHONE_1] or write to the address above quoting your UTR.\n\nYours sincerely\nHM Revenue and Customs"
+  },
+  "council-tax-reminder": {
+   "level": "model+patterns",
+   "analyseMs": 15963,
+   "explainMs": 5844,
+   "source": "cloud",
+   "placeholders": [
+    "[ADDRESS_1]",
+    "[NAME_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_1]",
+    "[BANK_ACCOUNT_1]",
+    "[NAME_2]",
+    "[PHONE_1]",
+    "[EMAIL_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "This is a council tax reminder notice from [ADDRESS_1] Council because a payment of £148.00 due on 1 November 2026 was not paid. You must pay this amount within 7 days of the letter date to avoid losing your right to pay by instalments.",
+    "what_it_means": [
+     "Your council tax instalment of £148.00 due on 1 November 2026 was not paid.",
+     "You have 7 days from the date of the notice to pay the £148.00.",
+     "If you do not pay, you will lose the right to pay by instalments and the full yearly balance of £740.00 will become due immediately.",
+     "The council may apply to the Magistrates' Court for a liability order, which adds £82.50 in costs to your account."
+    ],
+    "if_ignored": "If you ignore this letter, the full yearly balance of £740.00 will become due, and the council may apply to the Magistrates' Court for a liability order, adding £82.50 in costs.",
+    "options": [
+     {
+      "title": "Pay the amount in full",
+      "detail": "Pay the £148.00 within 7 days of the notice date to keep your right to pay by instalments."
+     },
+     {
+      "title": "Contact the council for help",
+      "detail": "Call [PHONE_1] or email [EMAIL_1] if you are struggling to pay or want to ask about Council Tax Reduction."
+     }
+    ],
+    "reply_draft": "Dear Revenues Team, Regarding account number [BANK_ACCOUNT_1], I am writing about the reminder notice dated 5 November 2026. Please contact me regarding payment options or help. Sincerely, [NAME_1]",
+    "check_first": [
+     "Check your bank account to see if the £148.00 payment left your account on or around 1 November 2026.",
+     "Check if you are eligible for Council Tax Reduction."
+    ]
+   },
+   "sent": "[ADDRESS_1] Council\nRevenues and Benefits, PO Box 100, [ADDRESS_1]\n\n[NAME_1]\n[ADDRESS_2]\n[ADDRESS_1]\n[POSTCODE_1]\n\nAccount number: [BANK_ACCOUNT_1]\nDate: 5 November 2026\n\nCOUNCIL TAX REMINDER NOTICE\n\nDear [NAME_2],\n\nOur records show that your council tax instalment of £148.00, due on 1 November 2026, has not been paid.\n\nYou must pay £148.00 within 7 days of the date of this notice. If you do not, you will lose your right to pay by instalments and the full balance of £740.00 for the year will become due. We may then apply to the Magistrates' Court for a liability order, which will add costs of £82.50 to your account.\n\nIf you are struggling to pay, contact us on [PHONE_1] or email [EMAIL_1]. You may be entitled to Council Tax Reduction.\n\nRevenues Team"
+  },
+  "landlord-rent-increase": {
+   "level": "model+patterns",
+   "analyseMs": 18244,
+   "explainMs": 4557,
+   "source": "cloud",
+   "placeholders": [
+    "[ADDRESS_1]",
+    "[POSTCODE_1]",
+    "[NAME_1]",
+    "[NAME_2]",
+    "[ADDRESS_2]",
+    "[POSTCODE_2]",
+    "[REFERENCE_1]",
+    "[NAME_3]",
+    "[NAME_4]",
+    "[PHONE_1]",
+    "[EMAIL_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "Harbour Lettings Ltd is increasing your rent from £780 to £865 per calendar month starting on 1 February 2027. If you do not want to pay the new rent, you must act before it starts.",
+    "what_it_means": [
+     "Your monthly rent will go up by £85.",
+     "The new rent begins on 1 February 2027.",
+     "The landlord assumes you accept the new rent if they do not hear from you by 10 December 2026.",
+     "You have the right to challenge the increase with a rent officer or tribunal before the new rent starts."
+    ],
+    "if_ignored": "If the landlord does not hear from you by 10 December 2026, they will take it that you accept the new rent and you should change your standing order for the February payment.",
+    "options": [
+     {
+      "title": "Accept the increase",
+      "detail": "Do nothing by 10 December 2026 and remember to update your standing order to £865 for the February payment."
+     },
+     {
+      "title": "Challenge the increase",
+      "detail": "Contact a rent officer or tribunal before 1 February 2027 if you believe the increase is unfair."
+     },
+     {
+      "title": "Contact the landlord",
+      "detail": "Call [PHONE_1] or email [EMAIL_1] to discuss the rent increase before the deadline."
+     }
+    ],
+    "reply_draft": "Dear Dana Fictive, Regarding tenancy reference [REFERENCE_1] for [ADDRESS_2], I am writing about the notice of rent increase dated 10 November 2026. [Please add your response here regarding whether you accept, wish to discuss, or are challenging the increase]. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check your tenancy agreement to see if there are rules about how and when rent can be increased.",
+     "Check local market rents to see if the new amount of £865 is fair for similar properties nearby.",
+     "Contact Shelter for free housing advice if you are worried about the rent increase."
+    ]
+   },
+   "sent": "Harbour Lettings Ltd\n[ADDRESS_1], Portside [POSTCODE_1]\n\n10 November 2026\n\nTo: [NAME_1] and [NAME_2]\n[ADDRESS_2], Portside, [POSTCODE_2]\n\nTenancy reference: [REFERENCE_1]\n\nDear [NAME_3] and [NAME_4],\n\nNOTICE OF RENT INCREASE\n\nWe are writing to tell you that the rent for the property above will go up from £780 per calendar month to £865 per calendar month. The new rent starts on 1 February 2027.\n\nIf you do not agree with the increase you have the right to refer this notice to a rent officer or tribunal before the new rent starts. If we do not hear from you by 10 December 2026 we will take it that you accept the new rent, and your standing order should be changed from the February payment.\n\nIf you have any questions please call the office on [PHONE_1] or email [EMAIL_1].\n\nYours sincerely,\nDana Fictive\nProperty Manager"
+  },
+  "dwp-overpayment": {
+   "level": "model+patterns",
+   "analyseMs": 23220,
+   "explainMs": 2055,
+   "source": "cloud",
+   "placeholders": [
+    "[POSTCODE_1]",
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_2]",
+    "[REFERENCE_1]",
+    "[NI_NUMBER_1]",
+    "[DATE_OF_BIRTH_1]",
+    "[NAME_2]",
+    "[PHONE_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "The DWP says you were paid £612.48 too much Universal Credit because your earnings changed. They plan to take £46.20 from each future payment starting on 12 December 2026 until the debt is paid.",
+    "what_it_means": [
+     "You were overpaid Universal Credit by £612.48 between 1 June 2026 and 31 August 2026.",
+     "The DWP states this happened because your earnings changed and they were not told at the time.",
+     "You are required to pay the money back.",
+     "Deductions of £46.20 will start automatically from your Universal Credit payment on 12 December 2026."
+    ],
+    "if_ignored": "The DWP will automatically deduct £46.20 from each of your Universal Credit payments starting on 12 December 2026 until the overpayment of £612.48 is fully recovered.",
+    "options": [
+     {
+      "title": "Ask for a mandatory reconsideration",
+      "detail": "If you disagree with the decision, you can ask the DWP to look at it again within one month of the date of the letter."
+     },
+     {
+      "title": "Request a lower deduction rate",
+      "detail": "If the £46.20 deductions leave you unable to pay for essentials, you can call Debt Management on [PHONE_1] to ask for a lower rate."
+     }
+    ],
+    "reply_draft": "Dear Debt Management, Regarding reference [REFERENCE_1], National Insurance number [NI_NUMBER_1], and date of birth [DATE_OF_BIRTH_1], I am writing about the letter dated 4 November 2026 regarding an alleged overpayment of Universal Credit. Please review this decision as I believe it is incorrect. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check your bank statements and earnings records for the period between 1 June 2026 and 31 August 2026 to see if your earnings really changed.",
+     "Check if you or someone else reported your earnings change to the DWP during that time.",
+     "Check your budget to see if the proposed deduction of £46.20 will leave you unable to afford essentials."
+    ]
+   },
+   "sent": "Department for Work and Pensions\nDebt Management\nMail Handling Site A, Wolverhampton, [POSTCODE_1]\n\n[NAME_1]\n[ADDRESS_1]\n[ADDRESS_2]\n[POSTCODE_2]\n\nOur reference: [REFERENCE_1]\nNational Insurance number: [NI_NUMBER_1]\nDate of birth: [DATE_OF_BIRTH_1]\n\n4 November 2026\n\nDear [NAME_2]\n\nYou have been paid too much Universal Credit\n\nBetween 1 June 2026 and 31 August 2026 you were paid £612.48 more Universal Credit than you were entitled to. This is because your earnings changed and we were not told at the time.\n\nYou have to pay this money back. We will take £46.20 from each Universal Credit payment starting from your payment on 12 December 2026 until the money is repaid.\n\nIf you disagree with this decision you can ask us to look at it again. This is called a mandatory reconsideration. You must ask within one month of the date of this letter. If the deductions will leave you unable to pay for essentials, call Debt Management on [PHONE_1] to ask for a lower rate.\n\nYours sincerely\nOffice Manager"
+  },
+  "parking-pcn": {
+   "level": "model+patterns",
+   "analyseMs": 44700,
+   "explainMs": 3298,
+   "source": "cloud",
+   "placeholders": [
+    "[ADDRESS_1]",
+    "[OTHER_1]",
+    "[OTHER_2]",
+    "[OTHER_3]",
+    "[OTHER_4]",
+    "[NAME_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_1]",
+    "[ADDRESS_3]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "[ADDRESS_1] Borough Council sent a penalty charge notice of £70 because the 14-day reduced payment period has ended. You must pay £70 or make formal representations within 28 days.",
+    "what_it_means": [
+     "A penalty charge of £70 is now due.",
+     "The 14-day period for paying the reduced charge of £35 has ended.",
+     "You must either pay the £70 or make formal representations within 28 days of the date this notice is served.",
+     "If you do neither, the council may issue a charge certificate increasing the penalty by 50% to £105."
+    ],
+    "if_ignored": "The council may issue a charge certificate that increases the penalty by 50% to £105.",
+    "options": [
+     {
+      "title": "Pay the charge",
+      "detail": "Pay the £70 penalty charge online by going to [ADDRESS_3].example.com/pcn and entering your PCN number and vehicle registration."
+     },
+     {
+      "title": "Make formal representations",
+      "detail": "Challenge the notice by making formal representations online at [ADDRESS_3].example.com/pcn within 28 days of the notice being served."
+     }
+    ],
+    "reply_draft": "Dear [ADDRESS_1] Borough Council Parking Services, I am writing regarding the Penalty Charge Notice with reference [OTHER_1]. I would like to formally make representations against this notice. Please review the details of my case and let me know your decision. Sincerely, [NAME_1]",
+    "check_first": [
+     "Check the date the notice was served to calculate the 28-day deadline accurately.",
+     "Check your records for your PCN number and vehicle registration details to use online.",
+     "Check if you have grounds to make formal representations."
+    ]
+   },
+   "sent": "[ADDRESS_1] Borough Council Parking Services\n\nPENALTY CHARGE NOTICE: NOTICE TO OWNER\n[OTHER_1]\n[OTHER_2]\n[OTHER_3]\n[OTHER_4]\n\nRegistered keeper:\n[NAME_1]\n[ADDRESS_2]\n[ADDRESS_1]\n[POSTCODE_1]\n\nDate of this notice: 9 November 2026\n\nA penalty charge of £70 is now due. The 14 day period for paying the reduced charge of £35 has ended.\n\nYou must either pay £70 or make formal representations within 28 days of the date this notice is served. If you do neither, we may issue a charge certificate increasing the penalty by 50% to £105.\n\nTo pay or challenge online go to [ADDRESS_3].example.com/pcn and enter the PCN number and vehicle registration."
+  },
+  "county-court-claim": {
+   "level": "model+patterns",
+   "analyseMs": 19733,
+   "explainMs": 5342,
+   "source": "cloud",
+   "placeholders": [
+    "[REFERENCE_1]",
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[POSTCODE_1]",
+    "[OTHER_1]",
+    "[REFERENCE_2]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "Brightline Finance Limited is taking [NAME_1] to court for a debt of £2,053.57. You must respond within 14 days of the date of service.",
+    "what_it_means": [
+     "Brightline Finance Limited says you owe £1,842.17 under a credit agreement, plus £96.40 in interest and a £115 court fee.",
+     "The total amount claimed is £2,053.57.",
+     "You have 14 days from the date of service to reply to the court claim.",
+     "You can pay, admit the claim and ask for time to pay, or dispute it by filing a defence."
+    ],
+    "if_ignored": "Judgment may be entered against you. A county court judgment will be recorded on the Register of Judgments and may make it difficult for you to get credit.",
+    "options": [
+     {
+      "title": "Pay in full",
+      "detail": "You can pay the total amount claimed of £2,053.57."
+     },
+     {
+      "title": "Admit the claim and ask for time to pay",
+      "detail": "You can admit all or part of the claim and ask the court for more time to pay."
+     },
+     {
+      "title": "Dispute the claim",
+      "detail": "You can dispute the claim by filing a defence, or file an acknowledgment of service to get 28 days to file a defence."
+     }
+    ],
+    "reply_draft": "Dear County Court Business Centre and Brightline Finance Limited, Re: Claim Number [REFERENCE_1], Password [REFERENCE_2]. I am writing in response to the claim made against me, [NAME_1], living at [ADDRESS_1], [POSTCODE_1]. Please note my response to this claim. [OTHER_1]. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check if you actually owe the money claimed by Brightline Finance Limited.",
+     "Check the date of service to make sure you respond within the 14-day deadline.",
+     "Contact free debt advice services such as StepChange, Citizens Advice, or Shelter for help with court claims."
+    ]
+   },
+   "sent": "In the County Court Business Centre\nClaim Number: [REFERENCE_1]\n\nClaimant: Brightline Finance Limited\nDefendant: [NAME_1], [ADDRESS_1], Old Mockton, [POSTCODE_1]\n\nIssue date: 3 November 2026\n\nParticulars of claim\nThe claimant claims the sum of £1,842.17 being monies due under a regulated credit agreement, [OTHER_1], together with interest of £96.40 and a court fee of £115.\n\nAmount claimed £2,053.57\n\nTo the defendant\nYou have 14 days from the date of service to respond to this claim. You can pay the amount claimed, admit all or part of the claim and ask for time to pay, or dispute the claim by filing a defence. If you need more time you can file an acknowledgment of service, which gives you 28 days from the date of service to file a defence.\n\nIf you do nothing, judgment may be entered against you. A county court judgment will be recorded on the Register of Judgments and may make it difficult for you to get credit.\n\nRespond online at the Money Claim Online service using the claim number and the password [REFERENCE_2]."
+  },
+  "energy-debt": {
+   "level": "model+patterns",
+   "analyseMs": 24812,
+   "explainMs": 2148,
+   "source": "cloud",
+   "placeholders": [
+    "[ADDRESS_1]",
+    "[NAME_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_1]",
+    "[REFERENCE_1]",
+    "[EMAIL_1]",
+    "[PHONE_1]",
+    "[NAME_2]",
+    "[PHONE_2]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "Kelpie Energy states that your electricity account is overdue by £418.90 and must be paid by 20 November 2026. If you do not pay or contact them, they may involve debt collectors or seek a court warrant for a prepayment meter.",
+    "what_it_means": [
+     "You owe £418.90 on your electricity account with reference [REFERENCE_1].",
+     "Kelpie Energy sent previous letters on 2 October 2026 and 20 October 2026 that have not been paid.",
+     "You must either pay the full amount or call [PHONE_2] to arrange a payment plan by 20 November 2026.",
+     "Vulnerable customers, such as those of pensionable age, disabled, or with long-term health conditions, can ask to join the Priority Services Register."
+    ],
+    "if_ignored": "Kelpie Energy may pass the debt to a collection agency and apply to the court for a warrant to fit a prepayment meter at your home, adding up to £150 in costs to your account.",
+    "options": [
+     {
+      "title": "Pay in full",
+      "detail": "Pay the full amount of £418.90 by 20 November 2026 to clear the balance."
+     },
+     {
+      "title": "Set up a payment plan",
+      "detail": "Call Kelpie Energy on [PHONE_2] to agree on a manageable way to pay off what you owe."
+     },
+     {
+      "title": "Join the Priority Services Register",
+      "detail": "Inform Kelpie Energy if you are of pensionable age, disabled, or have a long-term health condition to see if you qualify for extra help."
+     }
+    ],
+    "reply_draft": "Dear Kelpie Energy Collections Team, Regarding account [REFERENCE_1], I am writing in response to your letter dated 6 November 2026. Please contact me regarding a payment plan, or note my circumstances for the Priority Services Register. Sincerely, [NAME_1]",
+    "check_first": [
+     "Check your bank statements to see if the previous bills or payments were already made.",
+     "Check if you are eligible for the Priority Services Register due to age, disability, or health conditions.",
+     "Check your budget to see what amount you can realistically afford to pay towards a payment plan."
+    ]
+   },
+   "sent": "Kelpie Energy\nCustomer Accounts, PO Box 7, [ADDRESS_1]\n\n[NAME_1]\n[ADDRESS_2]\n[ADDRESS_1]\n[POSTCODE_1]\n\n[REFERENCE_1]\nEmail on file: [EMAIL_1]\nMobile on file: [PHONE_1]\n\n6 November 2026\n\nDear [NAME_2]\n\nYour account is overdue: £418.90\n\nWe wrote to you on 2 October 2026 and 20 October 2026 about the balance on your electricity account. We have not received payment.\n\nPlease pay £418.90 by 20 November 2026 or call us on [PHONE_2] to agree a payment plan. If we do not hear from you, we may pass the debt to a collection agency and may apply to the court for a warrant to fit a prepayment meter at your home. The costs of doing this, up to £150, may be added to your account.\n\nIf you are of pensionable age, disabled or have a long-term health condition, tell us: you may be able to join our Priority Services Register.\n\nKelpie Energy Collections Team"
+  },
+  "hmrc-tax-code": {
+   "level": "model+patterns",
+   "analyseMs": 29395,
+   "explainMs": 4153,
+   "source": "cloud",
+   "placeholders": [
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[ADDRESS_2]",
+    "[ADDRESS_3]",
+    "[POSTCODE_1]",
+    "[NI_NUMBER_1]",
+    "[TAX_REFERENCE_1]",
+    "[NAME_2]",
+    "[PHONE_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "HMRC has changed your tax code to collect £400 of tax they believe you owe from an earlier year. Your employer will use the new code from your next pay day.",
+    "what_it_means": [
+     "Your new tax code is 1057L, which replaces your old code 1257L.",
+     "HMRC reduced your tax-free amount by £2,000 for the rest of the tax year to collect the £400.",
+     "Your employer, Fictional Foods Ltd, will start using this new code on your next pay day."
+    ],
+    "if_ignored": "The tax will be collected automatically through your payroll using the new tax code.",
+    "options": [
+     {
+      "title": "Accept the change",
+      "detail": "Do nothing, and the £400 will be collected automatically through your wages using your new tax code."
+     },
+     {
+      "title": "Pay all at once",
+      "detail": "Contact HMRC within 30 days to pay the £400 in one single payment instead of through your tax code."
+     },
+     {
+      "title": "Challenge the amount",
+      "detail": "Phone HMRC within 30 days if you believe the tax code change is wrong."
+     }
+    ],
+    "reply_draft": "Dear HM Revenue and Customs, Regarding my tax code for the year 6 April 2026 to 5 April 2027 under National Insurance number [NI_NUMBER_1] and Employer PAYE reference [TAX_REFERENCE_1], I am writing to discuss the £400 tax owed from an earlier year. Please contact me to resolve this matter. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check your previous tax years to see if you actually owe £400.",
+     "Check your payslips and previous tax codes to verify the change.",
+     "Ensure you have your National Insurance number [NI_NUMBER_1] ready if you call."
+    ]
+   },
+   "sent": "HM Revenue and Customs\nPay As You Earn\n\n[NAME_1]\n[ADDRESS_1]\n[ADDRESS_2]\n[ADDRESS_3]\n[POSTCODE_1]\n\nNational Insurance number [NI_NUMBER_1]\nEmployer PAYE reference [TAX_REFERENCE_1]\nDate 1 November 2026\n\nDear [NAME_2]\n\nYour tax code for the tax year 6 April 2026 to 5 April 2027\n\nYour new tax code is 1057L. It replaces your previous code 1257L.\n\nWhy your code has changed\nWe think you owe £400 in tax from an earlier year. To collect it we have reduced your tax-free amount by £2,000 for the rest of this tax year. Your employer, Fictional Foods Ltd, will use the new code from your next pay day.\n\nIf you think this is wrong, or you would rather pay the £400 in one payment, tell us within 30 days. Phone [PHONE_1] and have your National Insurance number ready."
+  },
+  "bank-overdraft": {
+   "level": "model+patterns",
+   "analyseMs": 40112,
+   "explainMs": 2082,
+   "source": "cloud",
+   "placeholders": [
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[POSTCODE_1]",
+    "[NAME_2]",
+    "[BANK_ACCOUNT_1]",
+    "[PHONE_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "Tidewater Bank plc is removing your arranged overdraft limit of £1,500 on 7 December 2026. You must repay your current overdrawn balance of £1,212.36 in full by that date.",
+    "what_it_means": [
+     "Your arranged overdraft is being cancelled.",
+     "You owe £1,212.36 which must be repaid by 7 December 2026.",
+     "Free independent debt advice is available from StepChange or Citizens Advice."
+    ],
+    "if_ignored": "If you do not pay or contact the bank, they may register a default with credit reference agencies and close your account.",
+    "options": [
+     {
+      "title": "Repay in full",
+      "detail": "Pay the overdrawn balance of £1,212.36 before 7 December 2026."
+     },
+     {
+      "title": "Agree a repayment plan",
+      "detail": "Call the bank on [PHONE_1] before 7 December 2026 to arrange a plan if you cannot pay the full amount."
+     }
+    ],
+    "reply_draft": "Dear Customer Lending Team, Regarding account [BANK_ACCOUNT_1], I am writing about the removal of my arranged overdraft. Please contact me so we can discuss the repayment of my overdrawn balance. Sincerely, [NAME_1]",
+    "check_first": [
+     "Check your current bank account balance for [BANK_ACCOUNT_1].",
+     "Check if you can afford to pay £1,212.36 before 7 December 2026.",
+     "Contact StepChange or Citizens Advice for free debt advice if you need support."
+    ]
+   },
+   "sent": "Tidewater Bank plc\n\nPrivate and confidential\n[NAME_1]\n[ADDRESS_1]\n[POSTCODE_1]\n\n7 November 2026\n\nDear [NAME_2],\n\nYour arranged overdraft\n\n[BANK_ACCOUNT_1]\n\nWe reviewed your account on 5 November 2026. Your arranged overdraft limit of £1,500 will be removed on 7 December 2026. On that date any overdrawn balance becomes repayable in full. Your balance today is £1,212.36 overdrawn.\n\nIf you cannot repay the balance by 7 December 2026 please call us on [PHONE_1] before that date so that we can agree a repayment plan. If we do not hear from you, we may register a default with the credit reference agencies and close your account.\n\nYou can get free, independent debt advice from StepChange or Citizens Advice.\n\nYours sincerely,\nCustomer Lending Team"
+  },
+  "nhs-penalty-charge": {
+   "level": "model+patterns",
+   "analyseMs": 21179,
+   "explainMs": 2155,
+   "source": "cloud",
+   "placeholders": [
+    "[NAME_1]",
+    "[ADDRESS_1]",
+    "[ADDRESS_2]",
+    "[POSTCODE_1]",
+    "[NI_NUMBER_1]",
+    "[REFERENCE_1]",
+    "[DATE_OF_BIRTH_1]",
+    "[PHONE_1]"
+   ],
+   "unknown": [],
+   "answer": {
+    "summary": "The NHS Business Services Authority says you claimed a free prescription using a prepayment certificate on 12 August 2026, but they could not confirm your entitlement. You now owe a total of £59.40, which includes the prescription charge and a penalty charge.",
+    "what_it_means": [
+     "The NHS records show you received a free prescription on 12 August 2026.",
+     "They checked for a valid prescription prepayment certificate and could not find one for that date.",
+     "You owe £9.90 for the prescription charge and £49.50 for the penalty charge, making a total of £59.40.",
+     "You have 28 days from the date of the letter to pay or challenge the charge."
+    ],
+    "if_ignored": "If you do not pay or challenge the notice within 28 days of the date on the letter, a surcharge of £24.75 will be added.",
+    "options": [
+     {
+      "title": "Pay the total amount",
+      "detail": "You can pay £59.40 if you were not entitled to free prescriptions on 12 August 2026."
+     },
+     {
+      "title": "Challenge the notice",
+      "detail": "You can challenge the notice online or by phoning [PHONE_1] if you did have a valid certificate on that date, and the charges will be removed."
+     }
+    ],
+    "reply_draft": "Dear NHS Business Services Authority, Regarding Penalty Charge Notice reference [REFERENCE_1] and NHS number [NI_NUMBER_1] for [NAME_1], born on [DATE_OF_BIRTH_1]. I am writing to challenge this penalty charge because I held a valid prescription prepayment certificate on 12 August 2026. Please confirm that the charges will be removed. Yours sincerely, [NAME_1]",
+    "check_first": [
+     "Check whether you held a valid prescription prepayment certificate on 12 August 2026.",
+     "Check the payment or challenge instructions on the letter to see how to contact them via phone at [PHONE_1] or online."
+    ]
+   },
+   "sent": "NHS Business Services Authority\nPenalty Charge Notice\n\n[NAME_1]\n[ADDRESS_1]\n[ADDRESS_2]\n[POSTCODE_1]\n\nNHS number: [NI_NUMBER_1]\nPCN reference: [REFERENCE_1]\nDate of birth: [DATE_OF_BIRTH_1]\n\nDate: 3 November 2026\n\nOur records show that on 12 August 2026 you claimed a free NHS prescription by declaring that you held a valid prescription prepayment certificate. We could not confirm that you were entitled to it on that date.\n\nYou now need to pay:\nNHS prescription charge £9.90\nPenalty charge £49.50\nTotal £59.40\n\nYou must pay or challenge this notice within 28 days of the date above. If you do not, a surcharge of £24.75 will be added. If you were entitled to free prescriptions on 12 August 2026, you can challenge the notice online or by phoning [PHONE_1], and the charges will be removed."
+  }
+ }
+}

@@ -27,7 +27,7 @@ Official letters (a tax penalty, a council tax reminder, a rent increase, a cour
 Plain Letter splits the job in two:
 
 1. **On the device.** Chrome's built-in model, called through Firebase AI Logic in `only_on_device` mode, finds the personal details in the letter. A pattern check for UK formats (National Insurance number, UTR, postcode, sort code, NHS number, references) runs as well. Each detail is swapped for a placeholder such as `[NAME_1]`. The page shows the exact text that would be sent, and anything else can be hidden by hand. A photo of a letter can be read into text here too, on the device only.
-2. **In the cloud.** Only the hidden version goes to Gemini through Firebase AI Logic (`prefer_in_cloud`), for the harder work: what the letter means in plain English, what happens if it is ignored, the options, and a reply draft that still contains the placeholders. **TO CHECK: the cloud step has not been run yet.**
+2. **In the cloud.** Only the hidden version goes to Gemini through Firebase AI Logic (`prefer_in_cloud`), for the harder work: what the letter means in plain English, what happens if it is ignored, the options, and a reply draft that still contains the placeholders. (Run on all 10 sample letters on 17 Nov: `eval/CLOUD-RESULTS.md`.)
 3. **On the device again.** The placeholders are filled back in locally. The finished reply has the real name and references in it; the cloud never saw them.
 
 "Stay on this device" gives a shorter answer from the on-device model with nothing sent. A panel, "What has left this device", lists every outgoing text character for character; it is written by the same code that sends.
@@ -46,7 +46,7 @@ Every model call in the app goes through `firebase/ai` (`src/ai/firebase.js`). H
 | The same, "stay on this device" | `only_on_device` | the hidden version only |
 | Rewrite the reply: shorter, firmer, simpler | `prefer_on_device` | the reply with placeholders |
 
-Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). **TO CHECK: App Check is wired in code but not yet registered or run.** **TO CHECK: Firebase Hosting, if the hosted copy goes there.**
+Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). **TO CHECK: debug token checked on 17 Nov (requests carry the App Check header); reCAPTCHA provider and enforcement not yet set up.** **TO CHECK: Firebase Hosting, if the hosted copy goes there.**
 
 One thing we found and guard against: in the Firebase JavaScript SDK version we use (13.3.0), a browser with no built-in model at all sends an `only_on_device` call to the cloud instead of refusing it. Plain Letter therefore never relies on the mode alone. Device-only calls are refused before the SDK is called when the browser has no on-device model, they run on a second Firebase app with no real project behind it, and the answer is thrown away unless the SDK reports it came from the device. A test loads the real SDK and proves no request is made (`test/firebase-device-only.test.js`).
 
@@ -60,7 +60,7 @@ One thing we found and guard against: in the Firebase JavaScript SDK version we 
 
 ## Numbers (all from made-up sample letters; `eval/RESULTS.md`)
 
-Use the figures in `eval/RESULTS.md` as generated on the day; do not copy numbers from this draft. As of 16 Nov: 10 sample letters, 68 labelled personal details; patterns alone hide 61 of 68; on-device model plus patterns hide 67 of 68; all 42 amounts and deadlines the cloud needs stay readable. **TO CHECK: cloud answer quality has no numbers yet.**
+Use the figures in `eval/RESULTS.md` as generated on the day; do not copy numbers from this draft. As of 16 Nov: 10 sample letters, 68 labelled personal details; patterns alone hide 61 of 68; on-device model plus patterns hide 67 of 68; all 42 amounts and deadlines the cloud needs stay readable. Cloud step (one recorded run, 17 Nov, `eval/CLOUD-RESULTS.md`): 10 of 10 letters answered from the cloud, each answer states the main amount and deadline, each reply keeps the placeholders. **TO CHECK: re-run on the day and copy the figures from the file; substance of the explanations not scored.**
 
 ## What we built during the submission period
 

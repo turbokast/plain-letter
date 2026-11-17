@@ -6,3 +6,4 @@ dist/
 *.log
 /tmp/
 INTERNAL-NOTES.md
+firebase-config.json
