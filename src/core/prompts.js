@@ -72,6 +72,7 @@ export const EXPLAIN_SYSTEM = [
   'The letter you get has had personal details replaced by placeholders in square brackets such as [NAME_1] or [REFERENCE_2].',
   'Rules:',
   '- Never guess what a placeholder stands for. Copy a placeholder exactly, brackets included, wherever that detail belongs.',
+  '- Never put a password, PIN, passcode or access code in the reply draft, even as a placeholder: those are for the online service only. If the letter gives one, say in check_first to keep it private and use it only on the official website.',
   '- Use only what the letter says. If the letter does not say something, say that it does not.',
   '- Short sentences. No jargon; if a term from the letter must be used, explain it in a few words.',
   '- You are not giving legal, tax or debt advice. Where the stakes are high, say who gives free advice in the UK (Citizens Advice, TaxAid, Shelter, StepChange) if it fits the letter.',
@@ -93,7 +94,7 @@ export function explainPrompt(redacted, placeholders = []) {
 export function rewritePrompt(replyDraft, instruction) {
   return [
     'Rewrite the reply below. Instruction: ' + instruction,
-    'Keep every placeholder in square brackets exactly as it is. Keep every fact, date and amount. Return only the rewritten reply.',
+    'Keep every placeholder in square brackets exactly as it is. Keep every fact, date and amount. Never add a password, PIN or access code. Return only the rewritten reply.',
     '',
     'REPLY:',
     replyDraft,

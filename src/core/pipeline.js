@@ -9,6 +9,7 @@
 
 import { redact, findLeaks, locate } from './redact.js';
 import { fillBack, fillBackDeep } from './fillback.js';
+import { secretPlaceholders, stripSecrets } from './secrets.js';
 import { REWRITE_INSTRUCTIONS } from './prompts.js';
 
 export class LeakError extends Error {
@@ -140,8 +141,12 @@ export function createSession(ai, { now = () => new Date() } = {}) {
       if (!neverSend) record('explain', payload, 'cloud');
       const { result, source } = await ai.explain(payload, { neverSend, placeholders: Object.keys(state.redaction.map) });
       if (!neverSend && source !== 'cloud') outbound[outbound.length - 1].where = source;
-      const filled = fillBackDeep(result, state.redaction.map);
-      state.explanation = { redacted: result, filled: filled.value, unknownPlaceholders: filled.unknown, source };
+      // A reply must never carry a password, PIN or access code from the letter.
+      const secrets = secretPlaceholders(payload);
+      const cleaned = stripSecrets(result.reply_draft, secrets);
+      const safe = cleaned.removed ? { ...result, reply_draft: cleaned.text } : result;
+      const filled = fillBackDeep(safe, state.redaction.map);
+      state.explanation = { redacted: safe, filled: filled.value, unknownPlaceholders: filled.unknown, source, secretRemoved: cleaned.removed };
       return state.explanation;
     },
 
@@ -152,7 +157,9 @@ export function createSession(ai, { now = () => new Date() } = {}) {
       if (!instruction) throw new Error(`Unknown rewrite: ${how}`);
       const payload = state.explanation.redacted.reply_draft;
       gate(payload);
-      const { text, source } = await ai.rewrite(payload, instruction);
+      const raw = await ai.rewrite(payload, instruction);
+      const source = raw.source;
+      const text = stripSecrets(raw.text, secretPlaceholders(state.redaction.redacted)).text;
       if (source === 'cloud') record('rewrite reply', payload, 'cloud');
       const filled = fillBack(text, state.redaction.map);
       state.explanation.redacted = { ...state.explanation.redacted, reply_draft: text };

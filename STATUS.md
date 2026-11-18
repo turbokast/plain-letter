@@ -23,3 +23,6 @@ Risks:
 - on-device output varies from run to run
 - the device-only guard is checked against firebase 13.3.0 only
 - web only, so mainly in the running for Best Web/Chrome
+
+## 18 Nov 2026
+- Reply drafts never carry a password, PIN or access code: the prompt says so, and a device-side guard (src/core/secrets.js) removes any placeholder the letter introduces as one from the reply, after the cloud explanation and after every rewrite. Replayed on the 10 recorded cloud answers: 1 reply changed (the county court claim password), 9 untouched. 46 offline tests pass. Not yet re-run live against the cloud.
