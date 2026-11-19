@@ -46,7 +46,7 @@ Every model call in the app goes through `firebase/ai` (`src/ai/firebase.js`). H
 | The same, "stay on this device" | `only_on_device` | the hidden version only |
 | Rewrite the reply: shorter, firmer, simpler | `prefer_on_device` | the reply with placeholders |
 
-Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). **TO CHECK: debug token checked on 17 Nov (requests carry the App Check header); reCAPTCHA provider and enforcement not yet set up.** **TO CHECK: Firebase Hosting, if the hosted copy goes there.**
+Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). **TO CHECK: debug token checked on 17 Nov (requests carry the App Check header); reCAPTCHA Enterprise provider registered and checked on a hosted preview on 19 Nov; enforcement not yet switched on.** **Hosting: Cloudflare Pages (plain-letter.pages.dev), not Firebase Hosting.**
 
 One thing we found and guard against: in the Firebase JavaScript SDK version we use (13.3.0), a browser with no built-in model at all sends an `only_on_device` call to the cloud instead of refusing it. Plain Letter therefore never relies on the mode alone. Device-only calls are refused before the SDK is called when the browser has no on-device model, they run on a second Firebase app with no real project behind it, and the answer is thrown away unless the SDK reports it came from the device. A test loads the real SDK and proves no request is made (`test/firebase-device-only.test.js`).
 

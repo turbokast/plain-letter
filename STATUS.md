@@ -26,3 +26,8 @@ Risks:
 
 ## 18 Nov 2026
 - Reply drafts never carry a password, PIN or access code: the prompt says so, and a device-side guard (src/core/secrets.js) removes any placeholder the letter introduces as one from the reply, after the cloud explanation and after every rewrite. Replayed on the 10 recorded cloud answers: 1 reply changed (the county court claim password), 9 untouched. 46 offline tests pass. Not yet re-run live against the cloud.
+
+## 19 Nov 2026
+- App Check: reCAPTCHA Enterprise key made by the account owner (domains plain-letter.pages.dev and localhost) and registered in Firebase App Check as the Fraud Defense provider. Enforcement for Firebase AI Logic is still off.
+- Hosted preview on Cloudflare Pages (preview branch; the main plain-letter.pages.dev address has no deployment yet). Built with `npm run build:hosted`, which leaves the debug token out; checked: the token is not in the bundle, the site key is.
+- Checked on the preview, in one headless Chrome with its built-in model hidden (the no-model path): the App Check token exchange answered 200, the cloud request carried the token, and two sample letters (council tax, HMRC) were answered from the cloud with placeholders in the reply and details filled back on the device. Not checked there: a browser with the on-device model, phones, other browsers.
