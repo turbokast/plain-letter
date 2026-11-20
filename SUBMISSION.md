@@ -60,7 +60,7 @@ One thing we found and guard against: in the Firebase JavaScript SDK version we 
 
 ## Numbers (all from made-up sample letters; `eval/RESULTS.md`)
 
-Use the figures in `eval/RESULTS.md` as generated on the day; do not copy numbers from this draft. As of 16 Nov: 10 sample letters, 68 labelled personal details; patterns alone hide 61 of 68; on-device model plus patterns hide 67 of 68; all 42 amounts and deadlines the cloud needs stay readable. Cloud step (one recorded run, 17 Nov, `eval/CLOUD-RESULTS.md`): 10 of 10 letters answered from the cloud, each answer states the main amount and deadline, each reply keeps the placeholders. **TO CHECK: re-run on the day and copy the figures from the file; substance of the explanations not scored.**
+Use the figures in `eval/RESULTS.md` as generated on the day; do not copy numbers from this draft. As of 16 Nov: 10 sample letters, 68 labelled personal details; patterns alone hide 61 of 68; on-device model plus patterns hide 67 of 68; all 42 amounts and deadlines the cloud needs stay readable. Cloud step (one recorded run, 17 Nov, `eval/CLOUD-RESULTS.md`): 10 of 10 letters answered from the cloud, each answer states the main amount and deadline, each reply keeps the placeholders. Substance read by hand on 20 Nov (`eval/SUBSTANCE-REVIEW.md`): every amount and date matched its letter; 7 of 10 answers correct, 2 minor overstatements, 1 misleading line (what stops further HMRC penalties); prompt rules added for each. **TO CHECK: re-run on the day after the prompt change and copy the figures from the files.**
 
 ## What we built during the submission period
 
