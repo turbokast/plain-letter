@@ -145,7 +145,20 @@ async function busy(button, label, fn) {
   } finally {
     button.disabled = false;
     button.textContent = old;
+    // Disabling a focused button drops keyboard focus to <body>; give it back unless fn moved it on purpose.
+    if (!document.activeElement || document.activeElement === document.body) button.focus();
   }
+}
+
+// Show a step: scroll to it (no smooth scroll when reduced motion is asked for) and move keyboard and
+// screen-reader focus to its heading, so the next Tab continues inside the new step.
+function reveal(stepId) {
+  const step = $(stepId);
+  step.hidden = false;
+  const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  step.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+  const heading = step.querySelector('h2');
+  if (heading) heading.focus({ preventScroll: true });
 }
 
 $('analyse').onclick = () =>
@@ -163,8 +176,7 @@ $('analyse').onclick = () =>
     session.state.ms = Math.round(performance.now() - t0);
     $('step3').hidden = true;
     drawStep2();
-    $('step2').hidden = false;
-    $('step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    reveal('step2');
   });
 
 // ---------- step 2 ----------
@@ -244,8 +256,7 @@ async function runExplain(button, neverSend) {
       await session.explain({ neverSend });
       session.state.explanation.ms = Math.round(performance.now() - t0);
       drawStep3();
-      $('step3').hidden = false;
-      $('step3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      reveal('step3');
     } catch (e) {
       $('explainNote').className = 'err';
       $('explainNote').textContent =

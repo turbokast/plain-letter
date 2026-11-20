@@ -1,4 +1,4 @@
-# Devpost submission: field by field (DRAFT, 16 Nov 2026)
+# Devpost submission: field by field (DRAFT, 16 Nov 2026; updated 20 Nov)
 
 Not submitted. Lines marked **TO CHECK** state something that has not been run yet; they must be checked against a real run and corrected, or removed, before this is sent. Nothing here may claim more than `STATUS.md` says works.
 
@@ -46,7 +46,7 @@ Every model call in the app goes through `firebase/ai` (`src/ai/firebase.js`). H
 | The same, "stay on this device" | `only_on_device` | the hidden version only |
 | Rewrite the reply: shorter, firmer, simpler | `prefer_on_device` | the reply with placeholders |
 
-Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). **TO CHECK: debug token checked on 17 Nov (requests carry the App Check header); reCAPTCHA Enterprise provider registered and checked on a hosted preview on 19 Nov; enforcement not yet switched on.** **Hosting: Cloudflare Pages (plain-letter.pages.dev), not Firebase Hosting.**
+Also used: Firebase App Check (required by Firebase AI Logic; reCAPTCHA on the hosted copy, debug token for test builds). Checked: debug token on 17 Nov (every cloud request carries the App Check header); reCAPTCHA Enterprise provider on the hosted preview on 19 Nov (token exchange 200, cloud answer 200). **TO DO before submitting: switch App Check enforcement on for Firebase AI Logic and re-run one letter on the hosted copy; then delete this sentence.** **Hosting: Cloudflare Pages (plain-letter.pages.dev), not Firebase Hosting.**
 
 One thing we found and guard against: in the Firebase JavaScript SDK version we use (13.3.0), a browser with no built-in model at all sends an `only_on_device` call to the cloud instead of refusing it. Plain Letter therefore never relies on the mode alone. Device-only calls are refused before the SDK is called when the browser has no on-device model, they run on a second Firebase app with no real project behind it, and the answer is thrown away unless the SDK reports it came from the device. A test loads the real SDK and proves no request is made (`test/firebase-device-only.test.js`).
 
@@ -82,7 +82,7 @@ Firebase AI Logic (hybrid inference, JavaScript SDK), Gemini Nano in Chrome (bui
 
 ## Testing instructions for judges
 
-**TO CHECK once a hosted copy exists.** Draft:
+A hosted copy exists as a preview (https://preview.plain-letter.pages.dev, 19 Nov); the address judges get is https://plain-letter.pages.dev once the founder approves it going live. **TO CHECK on that address before submitting.** Draft:
 
 1. Open the link in desktop Chrome on a computer that supports Chrome's built-in AI. The first use downloads the on-device model (about 4 GB, a few minutes); the page shows progress.
 2. Press one of the made-up sample letters, then "Hide my details". Step 2 shows the exact text that would be sent.

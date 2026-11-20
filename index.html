@@ -29,7 +29,7 @@
           </div>
           <div class="actions">
             <button id="analyse" class="primary">Hide my details</button>
-            <span id="analyseNote" class="note"></span>
+            <span id="analyseNote" class="note" role="status" aria-live="polite"></span>
           </div>
           <div id="download" class="download" hidden>
             <progress id="downloadBar" max="1" value="0"></progress>
@@ -38,7 +38,7 @@
         </section>
 
         <section class="step" id="step2" aria-labelledby="h2" hidden>
-          <h2 id="h2"><span class="num">2</span> Check what will be sent</h2>
+          <h2 id="h2" tabindex="-1"><span class="num">2</span> Check what will be sent</h2>
           <div id="level" class="level"></div>
           <div id="facts" class="facts"></div>
           <h3>Exactly this text would be sent</h3>
@@ -59,11 +59,11 @@
             <button id="explain" class="primary">Explain it and draft a reply</button>
             <button id="explainLocal" class="quiet">Stay on this device (basic answer)</button>
           </div>
-          <p id="explainNote" class="note"></p>
+          <p id="explainNote" class="note" role="status" aria-live="polite"></p>
         </section>
 
         <section class="step" id="step3" aria-labelledby="h3" hidden>
-          <h2 id="h3"><span class="num">3</span> What it means, and your reply</h2>
+          <h2 id="h3" tabindex="-1"><span class="num">3</span> What it means, and your reply</h2>
           <div id="answer"></div>
         </section>
       </div>

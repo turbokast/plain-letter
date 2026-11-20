@@ -56,14 +56,17 @@ button.primary { background: var(--green); color: #fff; border: 1px solid var(--
 button.primary:hover { background: #0f4a30; }
 button.quiet, .add button, .tools button { background: transparent; color: var(--ink); border: 1px solid var(--ink); padding: 0.5rem 0.9rem; border-radius: 4px; cursor: pointer; }
 button:disabled { opacity: 0.55; cursor: progress; }
-button:focus-visible, textarea:focus-visible, input:focus-visible, .letter:focus-visible, summary:focus-visible { outline: 3px solid #7fb69a; outline-offset: 2px; }
+/* Focus ring: dark green on the light page (about 7:1), light green inside the dark ledger; both pass the 3:1 non-text contrast. */
+button:focus-visible, textarea:focus-visible, input:focus-visible, .letter:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+.ledger :focus-visible { outline-color: #7fb69a; }
+h2[tabindex="-1"]:focus { outline: none; }
 
 .photo { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; margin-top: 0.7rem; }
 .photo button { padding: 0.35rem 0.8rem; font-size: 0.9rem; }
 button:disabled.off { cursor: not-allowed; }
 
-.download { margin-top: 0.8rem; display: flex; gap: 0.7rem; align-items: center; font-size: 0.85rem; color: var(--muted); }
-.download progress { width: 14rem; }
+.download { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; font-size: 0.85rem; color: var(--muted); }
+.download progress { width: 14rem; max-width: 100%; }
 
 .level { font-size: 0.9rem; padding: 0.55rem 0.8rem; border-radius: 4px; background: var(--green-soft); color: #134a31; margin-bottom: 0.9rem; }
 .level.basic { background: var(--amber-soft); color: #5e3d00; }
