@@ -15,7 +15,7 @@ Amounts and dates: every amount and date in the 10 answers appears in its letter
 | energy-debt | correct | |
 | hmrc-tax-code | correct | |
 | bank-overdraft | correct | |
-| nhs-penalty-charge | correct | Reply draft asserts "I held a valid prescription prepayment certificate". Separately, the pattern check labelled the NHS number as `[NI_NUMBER_1]`; the value is hidden and filled back correctly, only the label is wrong. |
+| nhs-penalty-charge | correct | Reply draft asserts "I held a valid prescription prepayment certificate". Separately, the NHS number was labelled `[NI_NUMBER_1]` (the on-device model's label; its kind list has no NHS number); the value was hidden and filled back correctly. Fixed 20 Nov: a checksum-verified NHS pattern hit on the same text now sets the label. |
 
 Summary: 7 of 10 answers correct, 2 with a minor overstatement, 1 with a misleading statement about what stops further penalties. 3 reply drafts assert facts about the person that the letter does not show.
 

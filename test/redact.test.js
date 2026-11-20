@@ -127,3 +127,13 @@ test('every sample letter passes the gate, with patterns alone and with the reco
     }
   }
 });
+
+test('an NHS number the model labels as an NI number keeps the NHS label (the model has no NHS kind)', () => {
+  const r = redact('NHS number: 943 476 5919\nPCN reference: AB1234', [
+    { kind: 'NI_NUMBER', text: '943 476 5919', source: 'model' },
+  ]);
+  assert.match(r.redacted, /NHS number: \[NHS_NUMBER_1\]/);
+  assert.equal(r.map['[NHS_NUMBER_1]'], '943 476 5919');
+  const e = r.entities.find((x) => x.text === '943 476 5919');
+  assert.deepEqual(e.sources, ['model', 'pattern']);
+});

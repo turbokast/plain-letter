@@ -26,6 +26,9 @@ export function normaliseKind(kind) {
   return 'DETAIL';
 }
 
+// Kinds only the pattern check can name (not in the on-device model's list), each verified by a check digit.
+const PATTERN_ONLY_KINDS = new Set(['NHS_NUMBER']);
+
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /**
@@ -147,6 +150,9 @@ function redactOnce(text, details) {
     if (!clash) {
       taken.push({ ...s, sources: new Set([s.source]) });
     } else if (clash.start <= s.start && clash.end >= s.end) {
+      // The model's kind list has no NHS number, so it labels one as something else. A checksum-verified
+      // pattern hit on exactly the same text names it correctly.
+      if (s.source === 'pattern' && PATTERN_ONLY_KINDS.has(s.kind) && s.start === clash.start && s.end === clash.end) clash.kind = s.kind;
       clash.sources.add(s.source);
     } else {
       // Partial overlap: grow the kept span so nothing of either value is left visible.
