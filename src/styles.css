@@ -80,7 +80,7 @@ button:disabled.off { cursor: not-allowed; }
 .found { margin-top: 1rem; }
 .found summary { cursor: pointer; font-weight: 600; }
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.5rem; }
-th, td { text-align: left; padding: 0.3rem 0.5rem 0.3rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th, td { text-align: left; padding: 0.3rem 0.5rem 0.3rem 0; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
 th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 td:nth-child(2) { font-family: var(--mono); font-size: 0.8rem; overflow-wrap: anywhere; }
 .warn { margin-top: 0.6rem; font-size: 0.85rem; background: var(--amber-soft); color: #5e3d00; padding: 0.5rem 0.7rem; border-radius: 4px; }
@@ -115,7 +115,7 @@ td:nth-child(2) { font-family: var(--mono); font-size: 0.8rem; overflow-wrap: an
 .foot p { margin: 0.2rem 0; }
 
 @media (max-width: 880px) {
-  .layout { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
   .ledger { position: static; }
   .top { grid-template-columns: 1fr; }
   .status { grid-column: 1; grid-row: auto; justify-items: start; text-align: left; margin-top: 0.5rem; }

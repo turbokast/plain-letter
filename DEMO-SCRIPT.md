@@ -2,7 +2,7 @@
 
 Limit: 3 minutes (only the first 3 minutes may be judged). English. Public on YouTube. It must show the app working on Chrome. Aim for 2:40.
 
-Not recorded yet. The scenes marked **needs the cloud step** cannot be recorded until a Firebase project is connected and that step has been checked. Every figure spoken or shown must be read from `eval/RESULTS.md` on the day of recording.
+A captioned draft (no voice) was recorded on 21 Nov 2026: 2 min 52 s, following the scenes below with on-screen captions, the HMRC sample, the on-device model and the cloud step. The account owner decides whether to use it as it is, add his own voice, or record again. Every figure spoken or shown must be read from `eval/RESULTS.md` on the day of recording.
 
 Recording notes: desktop Chrome with the on-device model already downloaded, window 1280 x 800, the made-up "HMRC: late filing penalty" sample (no real personal data anywhere on screen), the "What has left this device" panel visible the whole time. The narration is the account owner's to word; the lines below say what each scene has to get across, not what to say.
 

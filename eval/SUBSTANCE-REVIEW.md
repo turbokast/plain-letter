@@ -1,4 +1,27 @@
-# Substance of the recorded cloud answers (read by hand, 20 Nov 2026)
+# Substance of the recorded cloud answers (read by hand)
+
+## 21 Nov 2026: re-run after the four prompt rules
+
+Source: `eval/cloud-output.json` as recorded on 21 Nov 2026 (one run, not cherry-picked; gemini-3.5-flash-lite; the same 10 made-up sample letters; on-device hiding with the model plus patterns). Read against the exact text sent and the letter, by one reader (an AI agent, Claude), no second marker.
+
+Amounts and dates: every amount and date in the 10 answers appears in its letter. None was invented or changed.
+
+| Letter | Verdict | Notes |
+|---|---|---|
+| hmrc-late-filing | minor (was misleading) | The wrong "pay to avoid further penalties" is gone: paying is now tied only to interest, as the letter says. It still does not name sending the return as the way to stop the £10 daily penalties (an omission, not a wrong statement). Reply: "[Add: details of your reasonable excuse ...]" instead of asserting one. |
+| council-tax-reminder | correct (was minor) | "may become due"; no added "immediately". |
+| landlord-rent-increase | correct | |
+| dwp-overpayment | minor | "will automatically deduct": "automatically" is not in the letter (it says "We will take £46.20 from each Universal Credit payment"). The reply no longer takes a stance ("[Add: ...]"). |
+| parking-pcn | correct | |
+| county-court-claim | correct (was minor) | Citizens Advice and StepChange named for a credit claim, not Shelter. No password in the reply; check_first says to keep it private. |
+| energy-debt | correct | |
+| hmrc-tax-code | correct | |
+| bank-overdraft | correct | |
+| nhs-penalty-charge | correct | The reply leaves "[Add: details of your challenge ...]" instead of asserting a certificate; NHS number now goes out as `[NHS_NUMBER_1]`. |
+
+Summary: 8 of 10 correct, 2 minor (one omission, one added "automatically"), 0 misleading (was 7 / 2 / 1 on 17 Nov). Reply drafts that assert facts about the person: 0 of 10 (was 3); all 10 leave an "[Add: ...]" note where the reply depends on the person. The automated checks in `eval/CLOUD-RESULTS.md` for this run: 10 of 10 from the cloud, 0 details readable in the text sent, amount and deadline stated 10 of 10, placeholders kept 10 of 10, cloud step 1.9 to 3.3 s (median 2.5 s).
+
+## 20 Nov 2026: first reading (run of 17 Nov)
 
 Source: `eval/cloud-output.json` (one recorded run, 17 Nov 2026, gemini-3.5-flash-lite, 10 made-up sample letters). Each answer was read against the exact text that was sent. One reader (an AI agent, Claude), no second marker, so treat this as a careful check, not a score.
 
