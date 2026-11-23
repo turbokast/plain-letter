@@ -43,3 +43,10 @@ Risks:
 - Keyboard and narrow screens in a real browser (headless Chrome, axe-core WCAG 2.2 AA): Tab order runs through the samples, the letter, the photo button and "Hide my details"; focus moves to the step 2 and step 3 headings; axe found no violations at 1280, 390 and 320 px or in dark mode. Found and fixed: the page scrolled sideways on narrow screens (86 px at 320 px, 16 px at 390 px; the one-column grid was sized to its widest child, and long placeholders in the details table did not wrap). Not checked: a screen reader.
 - Demo video: a captioned draft (no voice), 2 min 52 s, 1280 x 800, recorded from the local build with the on-device model and the cloud step. Not uploaded.
 - Not done: App Check enforcement (still off).
+
+## 23 Nov 2026
+- Account owner tried the hosted preview in his own Chrome: the answer said "Written by the cloud model" (21 Nov). He approved going live on 23 Nov.
+- Live: https://plain-letter.pages.dev (Cloudflare Pages production, commit fe08bff, `npm run build:hosted`; checked: the debug token is not in the bundle).
+- App Check enforcement for Firebase AI Logic switched on in the Firebase console (Basic: Enforced; Replay: Off). Before switching: 26 of 30 requests in 7 days verified, 2 from outdated clients, 2 invalid (the automated headless browser).
+- Repository made public: https://github.com/turbokast/plain-letter (Apache 2.0).
+- Video: the account owner asked for a voice-over and music on the captioned draft; not uploaded yet.

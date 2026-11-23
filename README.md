@@ -16,6 +16,8 @@ Plain Letter explains what a letter says. It is not legal, tax or debt advice.
 
 Built for the [#BuildHybridAI 2026](https://firebasehybridaihackathon.devpost.com/) hackathon. Web (Chrome) only.
 
+**Try it:** https://plain-letter.pages.dev (desktop Chrome; the made-up sample letters need no login). The first use downloads Chrome's on-device model (about 4 GB, a few minutes).
+
 ## Where each step runs
 
 | Step | Firebase AI Logic mode | Sees | Why |
@@ -73,6 +75,7 @@ Two faults found on 16 November by those runs, both fixed and both with a test t
 ## What is not done, and known weak points
 
 - **The cloud step has run once per sample letter on two days (17 and 21 Nov).** Firebase project on the free Spark plan, Gemini Developer API, `gemini-3.5-flash-lite`, App Check debug token. On 21 Nov 10 of 10 were answered from the cloud in 1.9 to 3.3 s; every answer states the main amount and the deadline (plain text match) and every reply draft keeps the placeholders (`eval/CLOUD-RESULTS.md`, raw output and the exact text sent in `eval/cloud-output.json`). Substance was read by hand, by one reader (`eval/SUBSTANCE-REVIEW.md`): after four prompt rules written from the 17 Nov run, 8 of 10 correct, 2 minor, none misleading. In that run one made-up village ("Old Mockton", an address written on one line) was still readable in the text sent; the pattern check now hides that case (test added), but the fix was written against that letter, so the 68 of 68 in `eval/RESULTS.md` is not an independent measure. The free-tier quota is shown only in Google AI Studio and has not been read, so how many judges it serves is not measured. The first request on 17 Nov was refused with "Firebase AI Logic genai config not found"; it worked minutes later without a console change, so this is put down to set-up delay, not proven.
+- App Check enforcement for Firebase AI Logic is on since 23 Nov 2026 (baseline enforcement; replay protection off). Cloud requests without a valid App Check token are refused; the app then gives the on-device answer.
 - App Check: the debug token is registered and every cloud request carries an App Check header (17 Nov; before that day's fix the app never switched App Check on when only a debug token was set). Since 19 Nov a reCAPTCHA Enterprise key (score-based, domains `plain-letter.pages.dev` and `localhost`) is registered as the App Check provider. A preview of the hosted copy on Cloudflare Pages got an App Check token from it and its cloud request carried that token (19 Nov, one browser, one letter, with the browser's built-in model hidden). Enforcement is still off, so until it is switched on the cloud step does not yet refuse requests without a token. Build the hosted copy with `npm run build:hosted`: it leaves the debug token out of the bundle (a normal `npm run build` with a debug token in `.env.local` would publish it).
 - Photos: tested only on pictures drawn by a script, in one size and one typeface. No phone photo of real paper, no two-page letter, no handwriting, no table has been tried. The picture is scaled to 1,600 pixels on its long side before reading; whether that is the best size is not measured.
 - Hiding a value everywhere costs some meaning: when the person's town is also in the sender's name or web address ("Eastmere Borough Council"), the cloud sees a placeholder there too. The effect on the explanation is not measured (no cloud run yet).
@@ -80,7 +83,7 @@ Two faults found on 16 November by those runs, both fixed and both with a test t
 - The rules name "Gemini Nano 4". Chrome 157 here logs its model as `nano_v3`. We use whatever model Chrome ships through the Firebase AI Logic SDK and cannot choose the version.
 - The device-only guard is checked against firebase 13.3.0 only. `package.json` allows newer 13.x versions; the test must be re-run after any update.
 - Not tried: a browser from another maker (Firefox, Safari), phones, screen readers, long letters (the on-device input limit is about 9,000 tokens).
-- `SUBMISSION.md` and `DEMO-SCRIPT.md` are drafts with open items marked. No video.
+- `SUBMISSION.md` and `DEMO-SCRIPT.md` are drafts with open items marked. The demo video is being finished (voice-over and music); its link will be added here.
 
 ## Plan, working back from the deadline
 
