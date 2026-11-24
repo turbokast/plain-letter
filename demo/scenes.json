@@ -1,0 +1,16 @@
+[
+ {"id": "s00", "at": 0.4, "text": "This is Plain Letter. It explains an official letter without handing your personal details to a cloud model."},
+ {"id": "s01", "at": 8.0, "text": "Official letters are hard to read, and they are full of details nobody should paste into a chatbot. This one is made up."},
+ {"id": "s02", "at": 17.3, "text": "Plain Letter splits the job. This device hides the details, the cloud explains the letter, and this device puts the details back."},
+ {"id": "s03", "at": 27.0, "text": "Step one runs in the browser. Chrome's built-in Gemini Nano model, called through Firebase AI Logic in on-device-only mode, finds the personal details, and a pattern check catches UK formats such as postcodes and National Insurance numbers. Nothing has left the device. The dark panel on the right lists everything that is sent, and it still says: nothing."},
+ {"id": "s04", "at": 56.3, "text": "Step two shows the exact text that would be sent. Every personal detail is now a placeholder, and the table says what found it."},
+ {"id": "s05", "at": 67.8, "text": "You stay in control. Anything else can be hidden by hand."},
+ {"id": "s06", "at": 74.0, "text": "Now the cloud. Only the hidden version goes to Gemini, for the harder reasoning. App Check guards the call, and the panel records the text sent, character for character."},
+ {"id": "s07", "at": 88.6, "text": "The answer, in plain English: what the letter means, what happens if it is ignored, and the options."},
+ {"id": "s08", "at": 100.4, "text": "Step three is back on this device. The reply draft gets the real name and reference numbers back, locally. The cloud only ever saw placeholders."},
+ {"id": "s09", "at": 111.2, "text": "Tick, show what the cloud saw, and here is the same reply as the cloud wrote it."},
+ {"id": "s10", "at": 121.3, "text": "Small edits run on the device too. Press Shorter, and the on-device model rewrites the reply. Nothing more is sent."},
+ {"id": "s11", "at": 137.2, "text": "With no connection, or no wish to send anything, Stay on this device gives a shorter answer from the on-device model."},
+ {"id": "s12", "at": 146.0, "text": "We measured it on ten made-up letters. In the recorded run, no labelled personal detail was readable in the text sent to the cloud. All ten cloud answers state the amount and the deadline, and every reply keeps the placeholders."},
+ {"id": "s13", "at": 165.0, "text": "Plain Letter explains what a letter says. It is not legal, tax or debt advice. The code, this video and this voice were made by AI agents, directed by Liam Humphreys at TurboKast."}
+]
