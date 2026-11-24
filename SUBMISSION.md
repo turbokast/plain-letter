@@ -1,6 +1,6 @@
-# Devpost submission: field by field (DRAFT, 16 Nov 2026; updated 20 Nov)
+# Devpost submission: field by field
 
-Not submitted. Lines marked **TO CHECK** state something that has not been run yet; they must be checked against a real run and corrected, or removed, before this is sent. Nothing here may claim more than `STATUS.md` says works.
+Submitted on 24 Nov 2026: https://devpost.com/software/plain-letter-68zm5f (editable until the deadline, Mon 30 Nov 2026 22:00 UK). The text sent, with the figures as generated on the day, is the project page itself; this file is the working copy it was written from. Nothing here may claim more than `STATUS.md` says works.
 
 Rules this follows (official rules, re-read 16 Nov 2026): a text description covering how Firebase AI Logic is used, the features, and the value; a public open-source repository (GitHub or GitLab) with the licence visible and Firebase AI Logic imported and called; a public YouTube video of 3 minutes at most, in English; a platform choice; a summary of what was built in the submission period. A hosted link is "highly encouraged", not required. App Check is required; debug tokens are accepted.
 
@@ -60,7 +60,7 @@ One thing we found and guard against: in the Firebase JavaScript SDK version we 
 
 ## Numbers (all from made-up sample letters; `eval/RESULTS.md`)
 
-Use the figures in `eval/RESULTS.md` as generated on the day; do not copy numbers from this draft. As of 16 Nov: 10 sample letters, 68 labelled personal details; patterns alone hide 61 of 68; on-device model plus patterns hide 67 of 68; all 42 amounts and deadlines the cloud needs stay readable. Cloud step (recorded run of 21 Nov, after the prompt rules, `eval/CLOUD-RESULTS.md`): 10 of 10 letters answered from the cloud in 1.9 to 3.3 s, no labelled detail readable in any text sent, each answer states the main amount and deadline, each reply keeps the placeholders. Substance read by hand (`eval/SUBSTANCE-REVIEW.md`): every amount and date matched its letter; 8 of 10 answers correct, 2 with a minor point (an omission, and an added "automatically"), none misleading; no reply draft asserts a fact about the person (the 17 Nov run: 7 correct, 2 minor, 1 misleading, 3 replies asserting facts, which led to four prompt rules).
+Figures as in `eval/RESULTS.md` (generated 20 Nov): 10 sample letters, 68 labelled personal details; patterns alone hide 62 of 68 (the six missed are names); on-device model plus patterns hid 68 of 68 in the recorded run of 14 Nov (one run; the on-device model does not give the same answer twice); all 42 amounts and deadlines the cloud needs stay readable. Cloud step (recorded run of 21 Nov, after the prompt rules, `eval/CLOUD-RESULTS.md`): 10 of 10 letters answered from the cloud in 1.9 to 3.3 s, no labelled detail readable in any text sent, each answer states the main amount and deadline, each reply keeps the placeholders. Substance read by hand (`eval/SUBSTANCE-REVIEW.md`): every amount and date matched its letter; 8 of 10 answers correct, 2 with a minor point (an omission, and an added "automatically"), none misleading; no reply draft asserts a fact about the person (the 17 Nov run: 7 correct, 2 minor, 1 misleading, 3 replies asserting facts, which led to four prompt rules).
 
 ## What we built during the submission period
 
@@ -78,7 +78,7 @@ Firebase AI Logic (hybrid inference, JavaScript SDK), Gemini Nano in Chrome (bui
 
 - Repository: https://github.com/turbokast/plain-letter (public, Apache 2.0)
 - Try it: https://plain-letter.pages.dev
-- Video: **TO FILL** (YouTube, public, 3 minutes at most)
+- Video: https://youtu.be/jvBvyyQEN4o (YouTube, public, 2 min 59 s; how it was made: `demo/README.md`)
 
 ## Testing instructions for judges
 

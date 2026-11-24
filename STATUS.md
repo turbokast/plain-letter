@@ -50,3 +50,10 @@ Risks:
 - App Check enforcement for Firebase AI Logic switched on in the Firebase console (Basic: Enforced; Replay: Off). Before switching: 26 of 30 requests in 7 days verified, 2 from outdated clients, 2 invalid (the automated headless browser).
 - Repository made public: https://github.com/turbokast/plain-letter (Apache 2.0).
 - Video: the account owner asked for a voice-over and music on the captioned draft; not uploaded yet.
+
+## 24 Nov 2026
+- Demo video finished: the 21 Nov captioned recording with a narration (synthetic voice, Kokoro, run locally) and a generated music bed, 2 min 59 s; sources and licences in `demo/README.md`. The account owner watched it and approved publishing.
+- Video public on YouTube (TurboKast channel): https://youtu.be/jvBvyyQEN4o. YouTube's checks found no issues; a signed-out request plays it.
+- Submitted on Devpost: https://devpost.com/software/plain-letter-68zm5f (platform Web (Chrome), entrant TurboKast Ltd, new project started 14 Nov 2026). It can be edited until Mon 30 Nov 2026 22:00 UK.
+- Left: nothing required. Before the deadline, check once more that the app, the repository and the video are still up.
+

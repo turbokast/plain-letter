@@ -83,7 +83,7 @@ Two faults found on 16 November by those runs, both fixed and both with a test t
 - The rules name "Gemini Nano 4". Chrome 157 here logs its model as `nano_v3`. We use whatever model Chrome ships through the Firebase AI Logic SDK and cannot choose the version.
 - The device-only guard is checked against firebase 13.3.0 only. `package.json` allows newer 13.x versions; the test must be re-run after any update.
 - Not tried: a browser from another maker (Firefox, Safari), phones, screen readers, long letters (the on-device input limit is about 9,000 tokens).
-- `SUBMISSION.md` and `DEMO-SCRIPT.md` are drafts with open items marked. The demo video is being finished (voice-over and music); its link will be added here.
+- Demo video (2 min 59 s, synthetic voice, generated music; how it was made is in `demo/README.md`): https://youtu.be/jvBvyyQEN4o. Submitted to #BuildHybridAI 2026 on 24 Nov 2026: https://devpost.com/software/plain-letter-68zm5f. `SUBMISSION.md` is the working copy of the submission text; `DEMO-SCRIPT.md` is the scene plan the video was recorded from.
 
 ## Plan, working back from the deadline
 
@@ -98,8 +98,9 @@ Deadline: Mon 30 Nov 2026, 2:00 pm Pacific = 22:00 UK. Target: ready a week earl
 | Fri 20 Nov | Hosted copy with App Check (reCAPTCHA) on its domain; phone layout, keyboard and screen-reader pass |
 | Sat 21 to Sun 22 Nov | Finish SUBMISSION.md and DEMO-SCRIPT.md from real cloud runs; demo video (3 minutes at most) |
 | Mon 23 Nov | Submission-ready; hand over for review |
-| Tue 24 to Sat 28 Nov | Margin: fixes from the review; public repository and video |
-| Mon 30 Nov 22:00 UK | Submitted |
+| Mon 23 Nov | Done: live at plain-letter.pages.dev, repository public, App Check enforced |
+| Tue 24 Nov | Done: video public on YouTube, submitted on Devpost |
+| Mon 30 Nov 22:00 UK | Deadline (the submission can be edited until then) |
 
 The dates from 17 Nov on hold only if the Firebase project exists by Wed 18 Nov. Each day it is later moves "submission-ready" a day past 23 Nov; the hard deadline stays reachable until about Wed 25 Nov.
 
